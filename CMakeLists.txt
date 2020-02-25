@@ -35,6 +35,8 @@ if(ANDROID)
     wifiapplet.cpp
     timeapplet.cpp
     timeapplet.h
+    soundapplet.cpp
+    soundapplet.h
   )
 else()
   add_executable(panel
@@ -45,6 +47,8 @@ else()
     wifiapplet.h
     timeapplet.cpp
     timeapplet.h
+    soundapplet.cpp
+    soundapplet.h
   )
 endif()
 
