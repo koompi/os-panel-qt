@@ -11,6 +11,7 @@
 #include <QTime>
 #include <QtNetwork/QNetworkConfiguration>
 #include <QtNetwork/QNetworkConfigurationManager>
+
 #define WID_WIDTH 32
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
   wifi = new wifiapplet(this);
@@ -46,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
   // Datatime setup
   // hello world my name is Ma Veasna
   // time
+
   panelDate->setText(QTime::currentTime().toString("hh:mm"));
   mainWidget->setLayout(panelLayout);
   panelLayout->addWidget(startMenuBtn);
@@ -64,8 +66,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
   connect(wifiBtn, &QToolButton::clicked, wifi, &wifiapplet::showWifiList);
 
   connect(soundBtn, &QToolButton::clicked, this, &MainWindow::showSoundPopup);
+  connect (actionCenter,&QToolButton::clicked,this, &MainWindow::showControlcenter);
 }
-
 MainWindow::~MainWindow() {}
 // below is used to set a preserved space for the window panel. ex. width of the
 // panel
@@ -83,7 +85,6 @@ void MainWindow::setStrut() {
     KWindowSystem::setExtendedStrut(wid, 0, 0, 0, 0, 0, 0, WID_WIDTH, 0, 0, 0,
                                     0, 0);
     qDebug() << "set up sucessfully" << endl;
-
   } catch (QString &error) {
     qDebug() << error << endl;
   }
@@ -120,12 +121,26 @@ void MainWindow::showSoundPopup() {
   if (!sound) {
     sound = new soundapplet(this);
   }
+
   QRect screen1 = QGuiApplication::primaryScreen()->geometry();
   qDebug() << sound->width();
   int perfectSize = screen1.width() - sound->width();
-  sound->move(perfectSize, WID_WIDTH + 2);
+  sound->move(perfectSize, WID_WIDTH + 1);
   sound->show();
   this->activateWindow();
+}
+
+void MainWindow::showControlcenter()
+{
+    if (!concenter) {
+        concenter = new controlcenter(this);
+      }
+    QRect screen1 = QGuiApplication::primaryScreen()->geometry();
+    qDebug() << concenter->width();
+    int perfectSize = screen1.width() - concenter->width();
+    concenter->move(perfectSize, WID_WIDTH +1);
+//    qInfo()<<"clicked";
+    concenter->show ();
 }
 
 bool MainWindow::event(QEvent *event) {
