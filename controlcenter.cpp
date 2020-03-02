@@ -13,11 +13,11 @@ controlcenter::controlcenter(QWidget *parent)
     resize(m_width * 0.25, m_height);
     // ui component declarations
 
-
     // ui component configurations
     timeStop = new QTimer(this);
     timeStop->setInterval(5000);
     connect(timeStop, &QTimer::timeout, this, &controlcenter::hide);
+    stackitem = new controlcenteritem(this);
 }
 
 controlcenter::~controlcenter() {

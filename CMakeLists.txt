@@ -39,6 +39,8 @@ if(ANDROID)
     soundapplet.h
     controlcenter.h
     controlcenter.cpp
+    controlcenteritem.cpp
+    controlcenteritem.h
   )
 else()
   add_executable(panel
@@ -53,6 +55,8 @@ else()
     soundapplet.h
     controlcenter.cpp
     controlcenter.h
+    controlcenteritem.cpp
+    controlcenteritem.h
   )
 endif()
 

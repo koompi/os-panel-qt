@@ -9,6 +9,7 @@
 #include <QSlider>
 #include <QVBoxLayout>
 #include <QWidget>
+#include "controlcenteritem.h"
 class controlcenter : public QWidget {
     Q_OBJECT
 public:
@@ -19,6 +20,7 @@ signals:
 private:
     int m_width, m_height;
     QTimer *timeStop = nullptr;
+    controlcenteritem * stackitem = nullptr;
 
 public:
     bool event(QEvent *event);
