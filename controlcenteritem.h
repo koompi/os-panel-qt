@@ -14,6 +14,7 @@
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "bluetoothapplet.h"
 
 class controlcenteritem : public QWidget
 {
@@ -63,6 +64,7 @@ public:
         QToolButton *lockscreen;
         QToolButton *reboot;
         QToolButton *shutdown;
+        bluetoothapplet* bluetoothpage;
 
 private:
      int m_width, m_height;

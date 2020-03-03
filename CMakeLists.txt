@@ -41,6 +41,8 @@ if(ANDROID)
     controlcenter.cpp
     controlcenteritem.cpp
     controlcenteritem.h
+    bluetoothapplet.cpp
+    bluetoothapplet.h
   )
 else()
   add_executable(panel
@@ -57,6 +59,8 @@ else()
     controlcenter.h
     controlcenteritem.cpp
     controlcenteritem.h
+    bluetoothapplet.cpp
+    bluetoothapplet.h
   )
 endif()
 

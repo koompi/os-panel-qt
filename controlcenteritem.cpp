@@ -8,6 +8,7 @@
 
 
 #include "controlcenteritem.h"
+
 #include <QProcess>
 #include <QDebug>
 #include <QScreen>
@@ -23,6 +24,9 @@ controlcenteritem::controlcenteritem(QWidget * parent):QWidget (parent){
         process.close ();
         qDebug() << process.exitCode ()<<endl;
     });
+    connect (bluetooth,&QToolButton::clicked, [&](){
+       stackedWidget->setCurrentIndex (2);
+    });
 }
 void controlcenteritem::setupUi(QWidget *Form)
 {
@@ -31,7 +35,7 @@ void controlcenteritem::setupUi(QWidget *Form)
     QScreen *screen = QGuiApplication::primaryScreen();
     m_width = screen->geometry().width();
     m_height = screen->geometry().height();
-    resize(m_width * 0.25, m_height);
+//    resize(m_width * 0.25, m_height);
     Form->resize(m_width * 0.25, m_height * 0.95);
     QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     sizePolicy.setHorizontalStretch(0);
@@ -414,6 +418,10 @@ void controlcenteritem::setupUi(QWidget *Form)
     label->setObjectName(QString::fromUtf8("label"));
     label->setGeometry(QRect(170, 240, 58, 18));
     stackedWidget->addWidget(wifipage);
+    bluetoothpage = new bluetoothapplet(this);
+    bluetoothpage->setBluetoothstacked (stackedWidget);
+    stackedWidget->addWidget(bluetoothpage);
+
 
     verticalLayout_4->addWidget(stackedWidget);
 
