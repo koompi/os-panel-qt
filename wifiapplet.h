@@ -2,32 +2,43 @@
 #define WIFIAPPLET_H
 
 #include <QFont>
-#include <QFrame>
-#include <QInputDialog>
-#include <QMenu>
 #include <QNetworkConfiguration>
-#include <QNetworkConfigurationManager>
+
 #include <QNetworkSession>
-#include <QObject>
 #include <QPointer>
 #include <QProcess>
 #include <QThread>
+#include <QToolButton>
 #include <QWidget>
 #include <QWidgetAction>
+#include <QtConcurrent/QtConcurrent>
+
+#include <QNetworkConfigurationManager>
+
 class wifiapplet : public QWidget {
   Q_OBJECT
+
 public:
   explicit wifiapplet(QWidget *parent = nullptr);
+
   virtual ~wifiapplet();
-  bool load_nmcli_list();
-public slots:
-  void showWifiList();
-  void connectWifi(const QString &);
+  QThread newThread;
+
+  void getActiveConnection();
+  QList<QStringList> getWirelessName_signal() const;
+  void setWirelessName_signal(const QList<QStringList> &value);
+  QList<QStringList> WirelessName_signal;
+
+
 signals:
+  void sendwifiList(QList<QStringList> list);
+  void requiredIconChanged();
+
+public
+  Q_SLOT : int connectWifi(const QString &, const QString &);
 
 private:
-  QMenu *menuWifi = nullptr;
-  QInputDialog *password_dialog = nullptr;
+  QToolButton *recwifiBtn;
 };
 
 #endif // WIFIAPPLET_H

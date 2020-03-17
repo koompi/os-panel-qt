@@ -63,8 +63,6 @@ int soundapplet::getCurrentVolume() {
 bool soundapplet::event(QEvent *event) {
   if (event->type() == QEvent::WindowDeactivate) {
     this->hide();
-  } else if (event->type() == QEvent::ToolTip) {
-    qDebug() << "you hover on sound applet";
   }
   return QDialog::event(event);
 }

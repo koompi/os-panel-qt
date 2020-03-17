@@ -8,7 +8,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS -fsanitize=address)
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
@@ -24,8 +24,10 @@ set(CMAKE_CXX_FLAGS -fsanitize=address)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Widgets Network Concurrent  REQUIRED)
+add_subdirectory(bluetooth)
+find_package(Qt5 COMPONENTS Widgets Network Concurrent Multimedia REQUIRED)
 find_package(KF5WindowSystem)
+find_package(kmp_bluetooth)
 if(ANDROID)
   add_library(panel SHARED
     main.cpp
@@ -41,6 +43,14 @@ if(ANDROID)
     controlcenter.cpp
     controlcenteritem.cpp
     controlcenteritem.h
+    wifiitemmodel.cpp
+    wifiitemmodel.h
+    wifiitemcontainer.cpp
+    wifiitemcontainer.h
+    soundservice.cpp
+    soundservice.h
+    networkservice.cpp
+    networkservice.h
   )
 else()
   add_executable(panel
@@ -57,7 +67,19 @@ else()
     controlcenter.h
     controlcenteritem.cpp
     controlcenteritem.h
+    wifiitemmodel.cpp
+    wifiitemmodel.h
+    wifiitemcontainer.cpp
+    wifiitemcontainer.h
+    soundservice.cpp
+    soundservice.h
+    networkservice.cpp
+    networkservice.h
   )
 endif()
 
-target_link_libraries(panel PRIVATE Qt5::Widgets KF5::WindowSystem Qt5::Network Qt5::Concurrent)
+target_link_libraries(panel PRIVATE Qt5::Widgets
+    KF5::WindowSystem
+    Qt5::Network
+    Qt5::Concurrent
+    Qt5::Multimedia kmp_bluetooth)

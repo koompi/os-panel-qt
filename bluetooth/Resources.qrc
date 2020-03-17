@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/sources">
+        <file>bluescanner.gif</file>
+    </qresource>
+</RCC>

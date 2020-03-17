@@ -1,18 +1,17 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "controlcenter.h"
 #include "soundapplet.h"
 #include "timeapplet.h"
 #include "wifiapplet.h"
-#include "controlcenter.h"
 #include <QLabel>
 #include <QMainWindow>
 #include <QMenu>
 #include <QProcess>
+#include <QPropertyAnimation>
 #include <QThread>
 #include <QToolButton>
-#include <QPropertyAnimation>
-#include <QPropertyAnimation>
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
@@ -24,26 +23,35 @@ public:
   QToolButton *setPanelButton(QToolButton *trayButton, const QString &icon);
   bool showStartMenu();
   void timefunction();
-
+  void setUpControlCenter();
 public Q_SLOTS:
   void setTime(QString value);
   void showSoundPopup();
   void showControlcenter();
+  void receiveChangeIcon();
+  void onSoundChange(int volume);
 
 private:
-  wifiapplet *wifi = nullptr;
   timeapplet *time = nullptr;
   soundapplet *sound = nullptr;
-  controlcenter* concenter = nullptr;
+  controlcenter *concenter = nullptr;
   QLabel *panelDate = nullptr;
   QThread newThread;
+  QToolButton *wifiBtn = nullptr;
   QToolButton *soundBtn = nullptr;
+  QToolButton *startMenuBtn = nullptr;
+  QToolButton *batterBtn = nullptr;
+  QToolButton *actionCenter = nullptr;
   QRect screen;
   int primaryWidth, perfectSize;
-  QPropertyAnimation *  animation = nullptr;
+  QPropertyAnimation *animation = nullptr;
 
   // QObject interface
 public:
   bool event(QEvent *event);
+  QToolButton *getWifiBtn();
+  void setWifiBtn(QToolButton *value);
+Q_SIGNALS:
+  void notifyWirelessPage();
 };
 #endif // MAINWINDOW_H
