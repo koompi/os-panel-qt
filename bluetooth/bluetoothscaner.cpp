@@ -112,6 +112,8 @@ void bluetoothscaner::retranslateUi(QWidget *Form) {
   Form->setWindowTitle(QCoreApplication::translate("Form", "Form", nullptr));
   bluetoothScanTitle->setText(
       QCoreApplication::translate("Form", "Select Devices", nullptr));
+  scannerStatus->setText(
+      QCoreApplication::translate("Form", "scanning....", nullptr));
   bluetoothEnablePin->setText(
       QCoreApplication::translate("Form", "Manual PIN", nullptr));
   bluetoothPin->setPlaceholderText(
@@ -122,16 +124,54 @@ void bluetoothscaner::retranslateUi(QWidget *Form) {
 }
 
 void bluetoothscaner::constructSignalSlot(QWidget *Form) {
+  Q_UNUSED(Form);
   connect(bluetoothCancel, &QPushButton::clicked, [this]() {
     this->hide();
     emit notifyToBluetoothPage();
   });
+  connect(this, &bluetoothscaner::notifyScannerDevices, this,
+          &bluetoothscaner::bluetoothScanning);
 }
 
 void bluetoothscaner::bluetoothAnimationScanner() {
   QMovie *movie = new QMovie(this);
   movie->setFileName(":/sources/bluescanner.gif");
+  movie->setSpeed(70);
   scannerani->setMovie(movie);
   movie->start();
   Q_EMIT(notifyScannerDevices());
+}
+
+void bluetoothscaner::bluetoothScanning() {
+  // Create a discovery agent and connect to its signals
+  QBluetoothDeviceDiscoveryAgent *discoveryAgent =
+      new QBluetoothDeviceDiscoveryAgent(this);
+  connect(discoveryAgent, SIGNAL(deviceDiscovered(QBluetoothDeviceInfo)), this,
+          SLOT(deviceDiscoverd(QBluetoothDeviceInfo)));
+  connect(discoveryAgent, &QBluetoothDeviceDiscoveryAgent::finished,
+          []() { qInfo() << "device discover finished "; });
+  // Start a discovery
+  discoveryAgent->start();
+
+  //...
+}
+
+void bluetoothscaner::deviceDiscoverd(QBluetoothDeviceInfo deviceInfo) {
+  QFont font;
+  font.setPixelSize(18);
+  bluetoothScannList->setFont(font);
+  if (deviceInfo.isValid()) {
+    if (model == nullptr) {
+      model = new QStandardItemModel(this);
+    }
+    //    int row = model->rowCount();
+    //    int colum = model->columnCount();
+    //    model->insertRows(row, 1);
+    //    QModelIndex index = model->index(row, colum);
+    //    model->setData(index, deviceInfo.name(), Qt::TextEditable);
+    bluetoothScannList->setModel(model);
+    QIcon icon;
+    model->appendRow(new QStandardItem(
+        icon.fromTheme("preferences-system-bluetooth"), deviceInfo.name()));
+  }
 }

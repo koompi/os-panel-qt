@@ -1,6 +1,10 @@
 #ifndef BLUETOOTHSCANER_H
 #define BLUETOOTHSCANER_H
+#include <QAbstractListModel>
 #include <QMovie>
+#include <QStandardItemModel>
+#include <QtBluetooth/QBluetoothDeviceDiscoveryAgent>
+#include <QtBluetooth/QBluetoothDeviceInfo>
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
@@ -36,9 +40,11 @@ private:
   QHBoxLayout *controlLayout;
   QPushButton *bluetoothNext;
   QPushButton *bluetoothCancel;
+  QStandardItemModel *model = nullptr;
 public slots:
   void bluetoothAnimationScanner();
-
+  void bluetoothScanning();
+  void deviceDiscoverd(QBluetoothDeviceInfo deviceInfo);
 signals:
   void notifyToBluetoothPage();
   void notifyScannerDevices();
