@@ -1,33 +1,16 @@
 #include "bluetoothui.h"
 #include <QBluetoothDeviceDiscoveryAgent>
 #include <QDebug>
+#include <QMovie>
 bluetoothui::bluetoothui(QWidget *parent) : QWidget(parent) {
-  //  checkBluetoothOnOff();
   setupUi(this);
-  connect(enableBluetoothBtn, &QToolButton::clicked, [&]() {
-    checkBox->setChecked(true);
-    bluetoothStack->setCurrentIndex(1);
-  });
-  connect(checkBox, &QCheckBox::stateChanged, [&](int state) {
-    if (state == 2) {
-      checkBox->setChecked(true);
-    }
-    bluetoothStack->setCurrentIndex(0);
-  });
-  connect(bluetoothBack, &QToolButton::clicked,
-          [&]() { emit notifyEnableBluetoothClicked(); });
-  connect(addNewBluetooth, &QToolButton::clicked, [this]() {
-    if (scannerPage == nullptr) {
-      scannerPage = new bluetoothscaner(this);
-    }
-    scannerPage->show();
-  });
-  connect(scannerPage, &bluetoothscaner::notifyToBluetoothPage,
-          [this]() { this->show(); });
+  init();
+  initAction();
 }
 void bluetoothui::setupUi(QWidget *FormBluetooth) {
   if (FormBluetooth->objectName().isEmpty())
-    FormBluetooth->setObjectName(QString::fromUtf8("FormBluetooth"));
+    bluetoothService = new bluetoothservice(this);
+  FormBluetooth->setObjectName(QString::fromUtf8("FormBluetooth"));
   FormBluetooth->setEnabled(true);
   FormBluetooth->resize(471, 912);
   verticalLayout = new QVBoxLayout(FormBluetooth);
@@ -60,7 +43,6 @@ void bluetoothui::setupUi(QWidget *FormBluetooth) {
   font.setWeight(50);
   topTitleBluetooth->setFont(font);
   topTitleBluetooth->setAlignment(Qt::AlignCenter);
-
   firstBlueLayout->addWidget(topTitleBluetooth);
 
   enableBluetoothBtn = new QToolButton(layoutWidget);
@@ -102,25 +84,19 @@ void bluetoothui::setupUi(QWidget *FormBluetooth) {
 
   layoutRight = new QHBoxLayout();
   layoutRight->setObjectName(QString::fromUtf8("layoutRight"));
-  addNewBluetooth = new QToolButton(layoutWidget1);
-  addNewBluetooth->setObjectName(QString::fromUtf8("addNewBluetooth"));
+  loadingAnimation = new QMovie(this);
+  loadingAnimation->setFileName(":/sources/blueloading.gif");
+  refreshBluetooth = new QToolButton(layoutWidget1);
+  refreshBluetooth->setObjectName(QString::fromUtf8("refreshBluetooth"));
   QFont font1;
   font1.setPointSize(12);
   font1.setBold(true);
   font1.setWeight(75);
-  addNewBluetooth->setFont(font1);
-  QIcon icon1;
-  iconThemeName = QString::fromUtf8("list-add");
-  if (QIcon::hasThemeIcon(iconThemeName)) {
-    icon1 = QIcon::fromTheme(iconThemeName);
-  } else {
-    icon1.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
-  }
-  addNewBluetooth->setIcon(icon1);
-  addNewBluetooth->setIconSize(QSize(24, 24));
-  addNewBluetooth->setAutoRaise(true);
+  refreshBluetooth->setFont(font1);
+  refreshBluetooth->setIconSize(QSize(24, 24));
+  refreshBluetooth->setAutoRaise(true);
 
-  layoutRight->addWidget(addNewBluetooth);
+  layoutRight->addWidget(refreshBluetooth);
 
   bluetoothSetting = new QToolButton(layoutWidget1);
   bluetoothSetting->setObjectName(QString::fromUtf8("bluetoothSetting"));
@@ -163,10 +139,8 @@ void bluetoothui::setupUi(QWidget *FormBluetooth) {
   verticalLayout->addWidget(bluetoothStack, 0,
                             Qt::AlignHCenter | Qt::AlignVCenter);
 
-  retranslateUi(FormBluetooth);
-
   bluetoothStack->setCurrentIndex(1);
-
+  retranslateUi(FormBluetooth);
   QMetaObject::connectSlotsByName(FormBluetooth);
 }
 void bluetoothui::retranslateUi(QWidget *FormBluetooth) {
@@ -177,7 +151,7 @@ void bluetoothui::retranslateUi(QWidget *FormBluetooth) {
   enableBluetoothBtn->setText(QCoreApplication::translate(
       "FormBluetooth", "Enable Bluetooth", nullptr));
   checkBox->setText(QString());
-  addNewBluetooth->setText(
+  refreshBluetooth->setText(
       QCoreApplication::translate("FormBluetooth", "...", nullptr));
   bluetoothSetting->setText(
       QCoreApplication::translate("FormBluetooth", "...", nullptr));
@@ -189,31 +163,67 @@ void bluetoothui::retranslateUi(QWidget *FormBluetooth) {
       QCoreApplication::translate("FormBluetooth", "...", nullptr));
 }
 
-void bluetoothui::checkBluetoothOnOff() {
-  QBluetoothLocalDevice localDevice;
-  if (localDevice.isValid()) {
-    checkBox->setCheckState(Qt::CheckState::Checked);
-  } else {
-    checkBox->setEnabled(false);
-    bluetoothTitle->setEnabled(false);
-    addNewBluetooth->setEnabled(false);
-    bluetoothSetting->setEnabled(false);
+void bluetoothui::onShowBluetoothItem(const QBluetoothDeviceInfo &blueName) {
+  bluetoothItem = new bluetoothitem(this);
+  connect(bluetoothItem, &bluetoothitem::requireBluetoothConnection,
+          bluetoothService, &bluetoothservice::addNewDevice);
+  bluetoothItem->getBluetoothName()->setText(blueName.name());
+  QListWidgetItem *listitem = new QListWidgetItem(listWidget);
+  listWidget->addItem(listitem);
+  listitem->setSizeHint(bluetoothItem->sizeHint());
+  listWidget->setItemWidget(listitem, bluetoothItem);
+}
+
+void bluetoothui::slotOncheckbluetooth(bool state) {
+  if (state)
+    m_localDevice.powerOn();
+  else
+    m_localDevice.setHostMode(QBluetoothLocalDevice::HostPoweredOff);
+}
+
+void bluetoothui::slotOnrefreshblutooth() {
+  listWidget->clear();
+  if (listWidget->count() == 0) {
+    qDebug() << "List clear then rescan bluetooth list..";
+    bluetoothService->bluetoothScanning();
   }
 }
 
-void bluetoothui::startDeviceDiscovery() {
+void bluetoothui::init() {
 
-  // Create a discovery agent and connect to its signals
-  QBluetoothDeviceDiscoveryAgent *discoveryAgent =
-      new QBluetoothDeviceDiscoveryAgent(this);
-  connect(discoveryAgent, SIGNAL(deviceDiscovered(QBluetoothDeviceInfo)), this,
-          SLOT(deviceDiscovered(QBluetoothDeviceInfo)));
-
-  // Start a discovery
-  discoveryAgent->start();
+  if (m_localDevice.hostMode() == QBluetoothLocalDevice::HostPoweredOff)
+    checkBox->setChecked(false);
+  else {
+    checkBox->setChecked(true);
+    loadingAnimation->start();
+  }
 }
 
-void bluetoothui::deviceDiscovered(const QBluetoothDeviceInfo &device) {
-  qDebug() << "Found new device:" << device.name() << '('
-           << device.address().toString() << ')';
+void bluetoothui::initAction() {
+  bluetoothService->bluetoothScanning();
+
+  connect(bluetoothService, &bluetoothservice::notifyDeviceName, this,
+          &bluetoothui::onShowBluetoothItem);
+  connect(checkBox, &QCheckBox::stateChanged, this,
+          &bluetoothui::slotOncheckbluetooth);
+  connect(bluetoothBack, &QToolButton::clicked,
+          [&]() { emit notifyEnableBluetoothClicked(); });
+  connect(bluetoothService, &bluetoothservice::notifyScanFinished,
+          [&]() { loadingAnimation->stop(); });
+  connect(loadingAnimation, &QMovie::frameChanged, [&]() {
+    refreshBluetooth->setIcon(QIcon(loadingAnimation->currentPixmap()));
+  });
+  connect(bluetoothService, &bluetoothservice::notifyConfinsished,
+          [&]() { refreshBluetooth->setEnabled(true); });
+
+  connect(refreshBluetooth, &QToolButton::clicked, this,
+          &bluetoothui::slotOnrefreshblutooth);
+
+  connect(&m_localDevice, &QBluetoothLocalDevice::hostModeStateChanged,
+          [&](QBluetoothLocalDevice::HostMode state) {
+            if (state == QBluetoothLocalDevice::HostMode::HostPoweredOff)
+              checkBox->setChecked(false);
+            else
+              checkBox->setChecked(true);
+          });
 }

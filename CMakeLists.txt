@@ -25,9 +25,12 @@ set(CMAKE_CXX_FLAGS -fsanitize=address)
 #endif()
 
 add_subdirectory(bluetooth)
+add_subdirectory(wireless-fidelity)
+add_subdirectory(action-center)
 find_package(Qt5 COMPONENTS Widgets Network Concurrent Multimedia REQUIRED)
 find_package(KF5WindowSystem)
 find_package(kmp_bluetooth)
+
 if(ANDROID)
   add_library(panel SHARED
     main.cpp

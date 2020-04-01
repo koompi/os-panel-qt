@@ -1,14 +1,14 @@
 #include "wifiapplet.h"
 #include <QDebug>
 #include <QDir>
+#include <QHostInfo>
 #include <QLabel>
 #include <QProcess>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <QHostInfo>
 
 wifiapplet::wifiapplet(QWidget *parent) : QWidget(parent) {
-    QtConcurrent::run([&]() {
+  QtConcurrent::run([&]() {
     getActiveConnection();
     emit sendwifiList(getWirelessName_signal());
   });
@@ -49,11 +49,8 @@ QList<QStringList> wifiapplet::getWirelessName_signal() const {
 }
 
 void wifiapplet::setWirelessName_signal(const QList<QStringList> &value) {
-    WirelessName_signal = value;
+  WirelessName_signal = value;
 }
-
-
-
 
 int wifiapplet::connectWifi(const QString &name, const QString &password) {
 
@@ -63,7 +60,10 @@ int wifiapplet::connectWifi(const QString &name, const QString &password) {
   }
   wifiConnPro.waitForStarted();
   wifiConnPro.setProgram("nmcli");
-  wifiConnPro.setArguments(QStringList() <<"device"<<"wifi"<<"connect"<< name <<"password"<< password);
+  wifiConnPro.setArguments(QStringList()
+                           << "device"
+                           << "wifi"
+                           << "connect" << name << "password" << password);
   wifiConnPro.start();
   wifiConnPro.waitForFinished();
   wifiConnPro.close();

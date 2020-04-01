@@ -4,8 +4,8 @@ networkservice::networkservice(QObject *parent) : QObject(parent) {
   qInfo() << "network service starting.....";
   checkIsOnline();
 }
-QList<QString> networkservice::getNetworkInfo() {
-  QList<QString> arrayOfaddress;
+QVector<QString> networkservice::getNetworkInfo() {
+  QVector<QString> arrayOfaddress;
   QString macAddress;
   foreach (const QNetworkInterface &netInterface,
            QNetworkInterface::allInterfaces()) {

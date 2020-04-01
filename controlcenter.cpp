@@ -5,8 +5,9 @@
 #include <QScreen>
 #include <QTimer>
 controlcenter::controlcenter(QWidget *parent)
-    : QWidget(parent, Qt::WindowStaysOnTopHint | Qt::CustomizeWindowHint |
-                          Qt::Popup | Qt::X11BypassWindowManagerHint) {
+    : QWidget(parent, Qt::CustomizeWindowHint | Qt::Popup |
+                          Qt::X11BypassWindowManagerHint |
+                          Qt::WindowStaysOnBottomHint) {
   this->setObjectName("control center applet");
   QScreen *screen = QGuiApplication::primaryScreen();
   m_width = screen->geometry().width();

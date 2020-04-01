@@ -29,7 +29,6 @@ public:
   void setWirelessName_signal(const QList<QStringList> &value);
   QList<QStringList> WirelessName_signal;
 
-
 signals:
   void sendwifiList(QList<QStringList> list);
   void requiredIconChanged();

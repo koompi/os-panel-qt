@@ -63,7 +63,7 @@ void wifiitemcontainer::setupUi(QWidget *Form) {
   label->setAlignment(Qt::AlignCenter);
   wifiListView = new QListWidget(Form);
   wifiListView->setObjectName(QString::fromUtf8("wifiListView"));
-  wifiListView->setGeometry(QRect(10, 140, 451, 381));
+  wifiListView->setGeometry(QRect(10, 140, 451, 890));
   wifiListView->setFrameShape(QFrame::NoFrame);
   wifiListView->setFrameShadow(QFrame::Raised);
   layoutWidget_2 = new QWidget(Form);
@@ -76,89 +76,6 @@ void wifiitemcontainer::setupUi(QWidget *Form) {
   QIcon icon1(QIcon::fromTheme(QString::fromUtf8("draw-arrow-back")));
   networkBackBtn->setIcon(icon1);
   networkBackBtn->setAutoRaise(true);
-  // network properties:
-  networkPropsName = new QLabel(Form);
-  networkPropsName->setObjectName(QString::fromUtf8("networkPropsName"));
-  networkPropsName->setGeometry(QRect(10, 600, 171, 19));
-  widget = new QWidget(Form);
-  widget->setObjectName(QString::fromUtf8("widget"));
-  widget->setGeometry(QRect(10, 650, 441, 21));
-  ipfourLayout = new QHBoxLayout(widget);
-  ipfourLayout->setSpacing(10);
-  ipfourLayout->setObjectName(QString::fromUtf8("ipfourLayout"));
-  ipfourLayout->setSizeConstraint(QLayout::SetFixedSize);
-  ipfourLayout->setContentsMargins(0, 0, 0, 0);
-  ipfourName = new QLabel(widget);
-  ipfourName->setObjectName(QString::fromUtf8("ipfourName"));
-  QSizePolicy netPropertiespolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
-  netPropertiespolicy.setHorizontalStretch(0);
-  netPropertiespolicy.setVerticalStretch(0);
-  netPropertiespolicy.setHeightForWidth(
-      ipfourName->sizePolicy().hasHeightForWidth());
-  ipfourName->setSizePolicy(netPropertiespolicy);
-
-  ipfourLayout->addWidget(ipfourName);
-
-  ipFourAddr = new QLabel(widget);
-  ipFourAddr->setObjectName(QString::fromUtf8("ipFourAddr"));
-
-  ipfourLayout->addWidget(ipFourAddr);
-
-  widget1 = new QWidget(Form);
-  widget1->setObjectName(QString::fromUtf8("widget1"));
-  widget1->setGeometry(QRect(10, 690, 441, 21));
-  ipsixLayout = new QHBoxLayout(widget1);
-  ipsixLayout->setObjectName(QString::fromUtf8("ipsixLayout"));
-  ipsixLayout->setContentsMargins(0, 0, 0, 0);
-  ipSixName = new QLabel(widget1);
-  ipSixName->setObjectName(QString::fromUtf8("ipSixName"));
-  netPropertiespolicy.setHeightForWidth(
-      ipSixName->sizePolicy().hasHeightForWidth());
-  ipSixName->setSizePolicy(netPropertiespolicy);
-
-  ipsixLayout->addWidget(ipSixName);
-
-  ipSixAddr = new QLabel(widget1);
-  ipSixAddr->setObjectName(QString::fromUtf8("ipSixAddr"));
-
-  ipsixLayout->addWidget(ipSixAddr);
-
-  widget2 = new QWidget(Form);
-  widget2->setObjectName(QString::fromUtf8("widget2"));
-  widget2->setGeometry(QRect(10, 730, 441, 21));
-  subnetLayout = new QHBoxLayout(widget2);
-  subnetLayout->setObjectName(QString::fromUtf8("subnetLayout"));
-  subnetLayout->setContentsMargins(0, 0, 0, 0);
-  subNetName = new QLabel(widget2);
-  subNetName->setObjectName(QString::fromUtf8("subNetName"));
-  netPropertiespolicy.setHeightForWidth(
-      subNetName->sizePolicy().hasHeightForWidth());
-  subNetName->setSizePolicy(netPropertiespolicy);
-
-  subnetLayout->addWidget(subNetName);
-
-  subNetMask = new QLabel(widget2);
-  subNetMask->setObjectName(QString::fromUtf8("subNetMask"));
-
-  subnetLayout->addWidget(subNetMask);
-
-  widget3 = new QWidget(Form);
-  widget3->setObjectName(QString::fromUtf8("widget3"));
-  widget3->setGeometry(QRect(10, 770, 441, 21));
-  macaddrLayout = new QHBoxLayout(widget3);
-  macaddrLayout->setObjectName(QString::fromUtf8("macaddrLayout"));
-  macaddrLayout->setContentsMargins(0, 0, 0, 0);
-  macName = new QLabel(widget3);
-  macName->setObjectName(QString::fromUtf8("macName"));
-  netPropertiespolicy.setHeightForWidth(
-      macName->sizePolicy().hasHeightForWidth());
-  macName->setSizePolicy(netPropertiespolicy);
-
-  macaddrLayout->addWidget(macName);
-
-  macAddr = new QLabel(widget3);
-  macAddr->setObjectName(QString::fromUtf8("macAddr"));
-  macaddrLayout->addWidget(macAddr);
   retranslateUi(Form);
 
   QMetaObject::connectSlotsByName(Form);
@@ -177,24 +94,6 @@ void wifiitemcontainer::retranslateUi(QWidget *Form) {
   searchBtn->setText(QCoreApplication::translate("Form", "...", nullptr));
   label->setText(QCoreApplication::translate("Form", "Network", nullptr));
   networkBackBtn->setText(QCoreApplication::translate("Form", "...", nullptr));
-  networkPropsName->setText(
-      QCoreApplication::translate("Form", "Network Properties:", nullptr));
-  ipfourName->setText(
-      QCoreApplication::translate("Form", "IPv4 address:", nullptr));
-  ipFourAddr->setText(
-      QCoreApplication::translate("Form", "no connection", nullptr));
-  ipSixName->setText(
-      QCoreApplication::translate("Form", "IPv6 address:", nullptr));
-  ipSixAddr->setText(
-      QCoreApplication::translate("Form", "no connection", nullptr));
-  subNetName->setText(
-      QCoreApplication::translate("Form", "sub netmask:", nullptr));
-  subNetMask->setText(
-      QCoreApplication::translate("Form", "no connection", nullptr));
-  macName->setText(
-      QCoreApplication::translate("Form", "MAC address:", nullptr));
-  macAddr->setText(
-      QCoreApplication::translate("Form", "no connection", nullptr));
 }
 
 QStackedWidget *wifiitemcontainer::getParentStacked() const {
@@ -250,22 +149,7 @@ void wifiitemcontainer::getwifiList(QList<QStringList> list) {
   }
 }
 
-void wifiitemcontainer::onNotifyAddress() {
-  networkservice *networkAddressService = new networkservice(this);
-  if (networkAddressService->checkIsOnline()) {
-    QList<QString> fourAddresses = networkAddressService->getNetworkInfo();
-    ipFourAddr->setText(fourAddresses.at(0));
-    macAddr->setText(fourAddresses.at(1));
-    subNetMask->setText(fourAddresses.at(2));
-    ipSixAddr->setText(fourAddresses.at(3));
-  } else {
-    ipFourAddr->setText("Please connect to the internet");
-    macAddr->setText("Please connect to the internet");
-    subNetMask->setText("Please connect to the internet");
-    ipSixAddr->setText("Please connect to the internet");
-  }
-  qInfo() << "Slot react back.....";
-}
+void wifiitemcontainer::onNotifyAddress() {}
 
 void wifiitemcontainer::callConnectWifi(const QString &ssid,
                                         const QString &pass) {

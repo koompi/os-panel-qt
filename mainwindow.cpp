@@ -17,7 +17,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
   QScreen *screen = QGuiApplication::primaryScreen();
   //  setScreen(screen->geometry());
   setFixedSize(QSize(screen->geometry().width(), WID_WIDTH));
-  qDebug() << layout() << endl;
   setStrut();
   // declare variable
   QWidget *mainWidget = new QWidget;
@@ -70,7 +69,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
   connect(actionCenter, &QToolButton::clicked, this,
           &MainWindow::showControlcenter);
 }
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow() { qInfo() << "Mainwindow get destroyed"; }
 // below is used to set a preserved space for the window panel. ex. width of the
 // panel
 void MainWindow::setStrut() {
@@ -86,7 +85,6 @@ void MainWindow::setStrut() {
     // taskbar
     KWindowSystem::setExtendedStrut(wid, 0, 0, 0, 0, 0, 0, WID_WIDTH, 0, 0, 0,
                                     0, 0);
-    qDebug() << "set up sucessfully" << endl;
   } catch (QString &error) {
     qDebug() << error << endl;
   }

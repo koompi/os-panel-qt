@@ -1,8 +1,8 @@
 #ifndef BLUETOOTHUI_H
 #define BLUETOOTHUI_H
 
-#include "bluetoothscaner.h"
-#include <QPointer>
+#include "bluetoothitem.h"
+#include "bluetoothservice.h"
 #include <QtBluetooth/QBluetoothDeviceInfo>
 #include <QtBluetooth/QBluetoothLocalDevice>
 #include <QtCore/QVariant>
@@ -22,10 +22,15 @@ public:
   explicit bluetoothui(QWidget *parent = nullptr);
   void setupUi(QWidget *FormBluetooth);
   void retranslateUi(QWidget *FormBluetooth);
-  void checkBluetoothOnOff();
-  void startDeviceDiscovery();
+public Q_SLOTS:
+  void onShowBluetoothItem(const QBluetoothDeviceInfo &blueName);
 private slots:
-  void deviceDiscovered(const QBluetoothDeviceInfo &device);
+  void slotOncheckbluetooth(bool state);
+  void slotOnrefreshblutooth();
+
+private:
+  void init();
+  void initAction();
 
 private:
   QVBoxLayout *verticalLayout;
@@ -41,12 +46,16 @@ private:
   QHBoxLayout *layoutTop;
   QCheckBox *checkBox;
   QHBoxLayout *layoutRight;
-  QToolButton *addNewBluetooth;
+  QToolButton *refreshBluetooth;
   QToolButton *bluetoothSetting;
   QLabel *availableTitle;
   QLabel *bluetoothTitle;
   QToolButton *bluetoothBack;
-  QPointer<bluetoothscaner> scannerPage = nullptr;
+  bluetoothservice *bluetoothService = nullptr;
+  bluetoothitem *bluetoothItem;
+  QMovie *loadingAnimation;
+  QBluetoothLocalDevice m_localDevice;
+
 signals:
   void notifyEnableBluetoothClicked();
 };

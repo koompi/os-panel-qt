@@ -11,7 +11,5 @@ void timeapplet::calculateTime() {
   QTime time = QTime::currentTime();
   qInfo() << time << endl;
   QString time_text = time.toString("hh : mm : ss");
-  //  if (time.currentTime().minute() == 60) {
-  //  }
   emit timeout(time_text);
 }

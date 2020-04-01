@@ -12,7 +12,7 @@ class networkservice : public QObject {
 public:
   explicit networkservice(QObject *parent = nullptr);
   bool checkIsOnline();
-  QList<QString> getNetworkInfo();
+  QVector<QString> getNetworkInfo();
 public Q_SLOTS:
   void disconnectState(const QString &ssid);
 signals:
