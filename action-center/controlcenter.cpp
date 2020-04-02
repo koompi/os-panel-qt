@@ -1,5 +1,5 @@
 #include "controlcenter.h"
-#include "mainwindow.h"
+#include "../koompi-panel/mainwindow.h"
 #include <QDebug>
 #include <QGuiApplication>
 #include <QScreen>

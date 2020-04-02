@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "bluetoothui.h"
 #include <KWindowSystem>
 #include <QApplication>
 #include <QDateTime>

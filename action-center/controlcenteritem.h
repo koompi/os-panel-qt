@@ -1,6 +1,8 @@
 #ifndef CONTROLCENTERITEM_H
 #define CONTROLCENTERITEM_H
 
+#include "bluetoothui.h"
+#include "soundservice.h"
 #include "wifiitemcontainer.h"
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
@@ -16,8 +18,6 @@
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include <bluetoothui.h>
-#include <soundservice.h>
 class controlcenteritem : public QWidget {
   Q_OBJECT
 public:

@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+//#include "controlcenter.h"
 #include "controlcenter.h"
 #include "soundapplet.h"
 #include "timeapplet.h"

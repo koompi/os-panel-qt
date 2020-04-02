@@ -1,8 +1,8 @@
 #ifndef WIFIAPPLET_H
 #define WIFIAPPLET_H
 
-#include <QFont>
 #include <QNetworkConfiguration>
+#include <QtGui/QFont>
 
 #include <QNetworkSession>
 #include <QPointer>

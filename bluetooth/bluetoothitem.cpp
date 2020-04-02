@@ -1,5 +1,4 @@
 #include "bluetoothitem.h"
-#include <BluezQt/Device>
 #include <QDebug>
 #include <QSpacerItem>
 
