@@ -1,9 +1,13 @@
- 
+set(CMAKE_AUTORCC ON)
+
+set(RESOURCE Resources.qrc)
+
 find_package(Qt5 COMPONENTS Widgets Network Concurrent Multimedia REQUIRED)
-find_package(KF5WindowSystem)
+find_package(KF5WindowSystem REQUIRED)
 find_package(koompisound)
 find_package(actioncenter)
 find_package(koompiwifi)
+
 if(ANDROID)
   add_library(panel SHARED
     main.cpp
@@ -19,6 +23,7 @@ else()
     mainwindow.h
     timeapplet.cpp
     timeapplet.h
+    ${RESOURCE}
   )
 endif()
 

@@ -3,6 +3,7 @@
 #include <QtBluetooth/QBluetoothAddress>
 #include <QtBluetooth/QBluetoothServer>
 #include <QtConcurrent>
+
 bluetoothservice::bluetoothservice(QObject *parent)
     : QObject(parent), m_localDevice(new QBluetoothLocalDevice(this)) {
 
@@ -53,15 +54,22 @@ void bluetoothservice::connectSendDataBluetooth() {
 }
 
 void bluetoothservice::connectBluetooth(const QString &addresser) {
-  QtConcurrent::run([addresser, this]() {
-    QProcess bluepro;
-    QStringList args;
-    args << "connect" << nameToAddress(addresser);
-    bluepro.start("bluetoothctl", args);
-    bluepro.waitForFinished();
-    bluepro.close();
-    emit notifyConfinsished(bluepro.exitCode());
-  });
+  qDebug() << "connection after paired ..." << endl;
+  qDebug() << addresser << endl;
+  qDebug() << nameToAddress(addresser);
+  QProcess *m_process = new QProcess(this);
+  connect(m_process, &QProcess::started, this,
+          &bluetoothservice::onProcessStarted);
+  connect(m_process,
+          QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
+          &bluetoothservice::onProcessFinished);
+
+  QStringList args;
+  m_process->setProgram("bluetoothctl");
+  args << "connect" << nameToAddress(addresser);
+  m_process->setArguments(args);
+  m_process->start(QIODevice::ReadOnly);
+  //  });
 }
 
 QString bluetoothservice::nameToAddress(const QString &info) {
@@ -100,6 +108,20 @@ void bluetoothservice::pairingDone(QBluetoothAddress addr,
   }
 }
 
+void bluetoothservice::onProcessStarted() {
+  qInfo() << "Process starting ......";
+}
+
+void bluetoothservice::onProcessFinished(int exitCode,
+                                         QProcess::ExitStatus status) {
+  qDebug() << "Process finished with status : " << status
+           << "The exit code : " << exitCode << endl;
+  if (exitCode == 0 && status == QProcess::NormalExit)
+    Q_EMIT notifyProcessFinished();
+  else
+    Q_EMIT notifyProcessFinishedError();
+}
+
 void bluetoothservice::bluetoothScanning() {
   // Create a discovery agent and connect to its signals
   QBluetoothDeviceDiscoveryAgent *discoveryAgent =
@@ -109,6 +131,7 @@ void bluetoothservice::bluetoothScanning() {
   connect(discoveryAgent, &QBluetoothDeviceDiscoveryAgent::finished,
           [&]() { emit notifyScanFinished(); });
   // Start a discovery
+
   discoveryAgent->start();
   //...
 }
@@ -117,9 +140,10 @@ void bluetoothservice::deviceDiscoverd(QBluetoothDeviceInfo deviceInfo) {
   listBluetoothInfo.push_back(deviceInfo);
   emit notifyDeviceName(deviceInfo);
 }
-
+// this function is used to add new bluetooth devices and check Pairing and
+// authorizing status
 void bluetoothservice::addNewDevice(QString addressdevice) {
-  qInfo() << "click on me ......" << this << endl;
+
   QBluetoothLocalDevice::Pairing paring = m_localDevice->pairingStatus(
       QBluetoothAddress(nameToAddress(addressdevice)));
   if (paring == QBluetoothLocalDevice::Paired ||
@@ -131,4 +155,17 @@ void bluetoothservice::addNewDevice(QString addressdevice) {
         QBluetoothAddress(nameToAddress(addressdevice)),
         QBluetoothLocalDevice::Paired);
   }
+}
+// this function is used to disconnect bluetooth devices that connected.
+void bluetoothservice::disConnectDevice(const QString &address) {
+  QProcess *discon_process = new QProcess(this);
+  discon_process->setProgram("bluetoothctl");
+  discon_process->setArguments(QStringList()
+                               << "disconnect" << nameToAddress(address));
+  discon_process->startDetached();
+  connect(discon_process, &QProcess::started, this,
+          &bluetoothservice::onProcessStarted);
+  connect(discon_process,
+          QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
+          &bluetoothservice::onProcessFinished);
 }

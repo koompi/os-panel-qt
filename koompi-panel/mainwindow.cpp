@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include <KWindowSystem>
+#include <KWindowSystem/kwindowsystem.h>
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
@@ -49,10 +49,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
   panelLayout->addWidget(startMenuBtn);
   panelLayout->addStretch(1000);
   panelLayout->addWidget(setPanelButton(wifiBtn, "network-wireless-acquiring"));
-  panelLayout->addWidget(setPanelButton(batterBtn, "battery-100"));
+  panelLayout->addWidget(setPanelButton(batterBtn, "battery"));
   panelLayout->addWidget(setPanelButton(soundBtn, "audio-volume-high"));
   panelLayout->addWidget(panelDate);
-  panelLayout->addWidget(setPanelButton(actionCenter, "systemsettings"));
+  panelLayout->addWidget(setPanelButton(actionCenter, "fuckyou"
+                                                      ""));
   //  connect(startMenuBtn, &QToolButton::clicked, [&]() { QApplication::quit();
   //  });
   connect(startMenuBtn, &QPushButton::clicked, this,
@@ -73,7 +74,6 @@ MainWindow::~MainWindow() { qInfo() << "Mainwindow get destroyed"; }
 // panel
 void MainWindow::setStrut() {
   try {
-
     if (KWindowSystem::isPlatformWayland()) {
       throw QString("Your platform is not supported");
     }
@@ -91,9 +91,17 @@ void MainWindow::setStrut() {
 
 QToolButton *MainWindow::setPanelButton(QToolButton *trayButton,
                                         const QString &icon) {
-  trayButton->setIcon(QIcon::fromTheme(icon));
-  trayButton->resize(24, 24);
-  trayButton->setStyleSheet("border: 0px;");
+  if (QIcon::hasThemeIcon(icon)) {
+    qInfo() << "Theme name exist" << endl;
+    trayButton->setIcon(QIcon::fromTheme(icon));
+    trayButton->resize(24, 24);
+    trayButton->setStyleSheet("border: 0px;");
+  } else {
+    QIcon icon(":/sources/setting.png");
+    trayButton->setIcon(icon);
+    trayButton->resize(24, 24);
+    trayButton->setStyleSheet("border: 0px;");
+  }
   return trayButton;
 }
 

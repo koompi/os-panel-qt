@@ -7,7 +7,6 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-#find_package(KF5BluezQt)
 set(SOURCES
     bluetoothui.cpp
     bluetoothitem.cpp
@@ -31,5 +30,5 @@ add_library(koompibluetooth
 )
 
 target_include_directories(koompibluetooth PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
-target_link_libraries(koompibluetooth PRIVATE Qt5::Widgets Qt5::Bluetooth Qt5::Concurrent)
+target_link_libraries(koompibluetooth PRIVATE Qt5::Widgets Qt5::Bluetooth Qt5::Concurrent )
 

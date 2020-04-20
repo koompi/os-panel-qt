@@ -1,6 +1,9 @@
 #ifndef BLUETOOTHITEM_H
 #define BLUETOOTHITEM_H
+#include <QDialog>
 #include <QFormLayout>
+#include <QPropertyAnimation>
+#include <QScreen>
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
@@ -13,37 +16,47 @@
 class bluetoothitem : public QWidget {
   Q_OBJECT
 private:
-  QHBoxLayout *BluetoothLayout;
+  QVBoxLayout *main_layout, *blue_main_info, *blue_props_layout,
+      *BluetoothTextLayout;
   QHBoxLayout *BluetoothItemLayout;
   QToolButton *BluetoothIcon;
-  QVBoxLayout *BluetoothTextLayout;
-  QLabel *BluetoothName;
-  QLabel *BluetoothStatus;
-  QVBoxLayout *topConainer;
-  QFormLayout *formInfoLayout;
-  QPushButton *BluetoothCon;
-  bool toggleState = false;
+  QDialog *blue_info_dialog = nullptr;
+  QPushButton *newPush, *BluetoothCon;
+  QLabel *BluetoothName, *BluetoothStatus, *label_address, *label_pair,
+      *label_trust, *label_adapter;
+  QPropertyAnimation *anim;
+  QScreen *dim;
 
 public:
   explicit bluetoothitem(QWidget *parent = nullptr);
   ~bluetoothitem();
-  void extendHeightLayout();
-  void resetHeightLayout();
-
   QLabel *getBluetoothName() const;
   void setBluetoothName(QLabel *value);
-
+  void setupUi(QWidget *BluetoothItem);
   QToolButton *getBluetoothIcon() const;
   void setBluetoothIcon(QToolButton *value);
+  QLabel *getLabel_address() const;
+  void setLabel_address(QLabel *value);
 
+  QLabel *getLabel_pair() const;
+  void setLabel_pair(QLabel *value);
+
+  QLabel *getLabel_trust() const;
+  void setLabel_trust(QLabel *value);
+
+  QLabel *getLabel_adapter() const;
+  void setLabel_adapter(QLabel *value);
+public Q_SLOTS:
+  void changeTextAndPosition();
 signals:
   void requireBluetoothConnection(const QString bluetoothName);
   void requireBluetoothDisconnect(const QString bluetoothName);
+  void notifiyExtendSize();
+  void notifyCollapseSize();
+  void requestData(bluetoothitem *);
 
 private:
-  void setupUi(QWidget *BluetoothItem);
   void retranslateUi(QWidget *BluetoothItem);
-  void init();
   void initAction();
 
 protected:
@@ -53,6 +66,10 @@ protected:
 protected:
   void enterEvent(QEvent *event);
   void leaveEvent(QEvent *event);
+
+  // QWidget interface
+protected:
+  void paintEvent(QPaintEvent *event);
 };
 
 #endif // BLUETOOTHITEM_H

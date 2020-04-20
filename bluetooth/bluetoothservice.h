@@ -36,14 +36,19 @@ private slots:
   void onParingdisplayconfirmation(const QBluetoothAddress &addr, QString pin);
   void pairingDone(QBluetoothAddress addr,
                    QBluetoothLocalDevice::Pairing pairing);
+  void onProcessStarted();
 public slots:
+  void onProcessFinished(int exitCode, QProcess::ExitStatus status);
   void deviceDiscoverd(QBluetoothDeviceInfo deviceInfo);
   void addNewDevice(const QString addressdevice);
+  void disConnectDevice(const QString &address);
 signals:
   void notifyCurrentSelectedAddress(const QBluetoothAddress &blueAddress);
   void notifyDeviceName(const QBluetoothDeviceInfo &);
   void notifyScanFinished();
   void notifyConfinsished(int exitCode);
+  void notifyProcessFinished();
+  void notifyProcessFinishedError();
 };
 
 #endif // bluetoothservice_H

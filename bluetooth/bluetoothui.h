@@ -22,15 +22,19 @@ public:
   explicit bluetoothui(QWidget *parent = nullptr);
   void setupUi(QWidget *FormBluetooth);
   void retranslateUi(QWidget *FormBluetooth);
+  // extend size of bluetooth item.
+  void onCollapseSize();
 public Q_SLOTS:
   void onShowBluetoothItem(const QBluetoothDeviceInfo &blueName);
+  void onRequestData(bluetoothitem *);
 private slots:
   void slotOncheckbluetooth(bool state);
   void slotOnrefreshblutooth();
+  void slotOnHostModeChange(QBluetoothLocalDevice::HostMode mode);
 
 private:
-  void init();
   void initAction();
+  void reloadWifiList();
 
 private:
   QVBoxLayout *verticalLayout;
@@ -55,6 +59,8 @@ private:
   bluetoothitem *bluetoothItem;
   QMovie *loadingAnimation;
   QBluetoothLocalDevice m_localDevice;
+  bool clickState = false;
+  QString adapter_name;
 
 signals:
   void notifyEnableBluetoothClicked();

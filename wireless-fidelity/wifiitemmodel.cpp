@@ -73,8 +73,6 @@ void wifiItemModel::setupUi(QWidget *Form) {
   verticalLayout_2->addLayout(horizontalLayout_2);
 
   connect(wifiConnectBtn, &QPushButton::clicked, [&]() {
-    //    passEdit->setPlaceholderText(
-    //        QCoreApplication::translate("Form", "Password . . .", nullptr));
     wifiConnectBtn->setEnabled(false);
     if (!passEdit) {
       horizontalLayout_3 = new QHBoxLayout();
