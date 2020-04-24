@@ -293,7 +293,6 @@ void bluetoothui::initAction() {
   connect(listWidget, &QListWidget::currentRowChanged,
           [&](int value) { qDebug() << value << endl; });
 }
-
 void bluetoothui::reloadWifiList() {
   listWidget->clear();
   if (listWidget->count() == 0) {
