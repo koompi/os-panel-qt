@@ -14,8 +14,9 @@ find_package(Qt5 COMPONENTS Widgets Network Concurrent REQUIRED)
 find_package(kmpbluetooth)
 find_package(koompiwifi)
 find_package(koompisound)
+find_package (brightness)
 add_library(actioncenter ${SOURCES} ${MOC_HEADERS})
 
 target_include_directories(actioncenter PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
-target_link_libraries(actioncenter PUBLIC koompibluetooth koompiwifi koompisound Qt5::Widgets Qt5::Network Qt5::Concurrent )
+target_link_libraries(actioncenter PUBLIC koompibluetooth koompiwifi koompisound brightness Qt5::Widgets Qt5::Network Qt5::Concurrent )
 

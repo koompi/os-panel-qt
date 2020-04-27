@@ -4,6 +4,8 @@
 #include "bluetoothui.h"
 #include "soundservice.h"
 #include "wifiitemcontainer.h"
+#include "brightness.h"
+#include "bluelight.h"
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
@@ -71,7 +73,11 @@ private:
   wifiitemcontainer *wifipage;
   soundservice *soundService = nullptr;
   QLabel *audioPercentShow = nullptr;
+  QLabel *brightPercentShow = nullptr;
+  QLabel *bluePercentShow = nullptr;
   bluetoothui *kmpbluetooth;
+  brightness *bright;
+  bluelight * blue;
 
 Q_SIGNALS:
 
