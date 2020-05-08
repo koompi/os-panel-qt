@@ -6,6 +6,7 @@
 #include "wifiitemcontainer.h"
 #include "brightness.h"
 #include "bluelight.h"
+#include "displayui.h"
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
@@ -79,6 +80,7 @@ private:
   bluetoothui *kmpbluetooth;
   brightness *bright;
   bluelight * blue;
+  displayui *displaypage;
 
 Q_SIGNALS:
 
