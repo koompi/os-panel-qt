@@ -52,6 +52,7 @@ controlcenteritem::controlcenteritem(QWidget *parent) : QWidget(parent) {
         bluePercentShow->setText (
                     QString::number(value).append ("%"));
     });
+    night = new nightmodecontrol(this);
 }
 void controlcenteritem::setupUi(QWidget *Form) {
 
