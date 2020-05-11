@@ -6,6 +6,7 @@
 #include "wifiitemcontainer.h"
 #include "brightness.h"
 #include "bluelight.h"
+#include "airplanecontrol.h"
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
@@ -21,65 +22,65 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 class controlcenteritem : public QWidget {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  explicit controlcenteritem(QWidget *parent = nullptr);
-  void setupUi(QWidget *);
-  void retranslateUi(QWidget *);
-  QStackedWidget *getStackedWidget() const;
-  void setStackedWidget(QStackedWidget *value);
+    explicit controlcenteritem(QWidget *parent = nullptr);
+    void setupUi(QWidget *);
+    void retranslateUi(QWidget *);
+    QStackedWidget *getStackedWidget() const;
+    void setStackedWidget(QStackedWidget *value);
 
 private:
-  int m_width, m_height;
-  QVBoxLayout *verticalLayout;
-       QStackedWidget *stackedWidget;
-       QWidget *quicksetting;
-       QWidget *layoutWidget;
-       QVBoxLayout *verticalLayout_2;
-       QVBoxLayout *quickNotifyLayout;
-       QVBoxLayout *quickSettingLayout;
-       QLabel *quicksettinglabel;
-       QVBoxLayout *quickchildLayout;
-       QGridLayout *quickgridLayout;
-       QToolButton *allsetting;
-       QToolButton *locale;
-       QToolButton *nightmode;
-       QToolButton *airplanemode;
-       QToolButton *display;
-       QToolButton *focuse;
-       QToolButton *bluetooth;
-       QToolButton *wifi;
-       QSpacerItem *verticalSpacer;
-       QHBoxLayout *brightnessLayout;
-       QToolButton *brightnessbtn;
-       QSlider *BrightnessSlider;
-       QHBoxLayout *nightModeLayout;
-       QToolButton *bluelightbtn;
-       QSlider *bluelightslider;
-       QHBoxLayout *soundLayout;
-       QToolButton *volumebtn;
-       QSlider *volumeslider;
-       QVBoxLayout *notifyLayout;
-       QHBoxLayout *notifyClearLayout;
-       QLabel *notificationlabel;
-       QPushButton *clearNotifyBtn;
-       QScrollArea *notifyScrollArea;
-       QWidget *notifyScrollContents;
-       QHBoxLayout *leaveLayout;
-       QToolButton *logout;
-       QToolButton *suspend;
-       QToolButton *lockscreen;
-       QToolButton *reboot;
-       QToolButton *shutdown;
-  wifiitemcontainer *wifipage;
-  soundservice *soundService = nullptr;
-  QLabel *audioPercentShow = nullptr;
-  QLabel *brightPercentShow = nullptr;
-  QLabel *bluePercentShow = nullptr;
-  bluetoothui *kmpbluetooth;
-  brightness *bright;
-  bluelight * blue;
-
+    int m_width, m_height;
+    QVBoxLayout *verticalLayout;
+    QStackedWidget *stackedWidget;
+    QWidget *quicksetting;
+    QWidget *layoutWidget;
+    QVBoxLayout *verticalLayout_2;
+    QVBoxLayout *quickNotifyLayout;
+    QVBoxLayout *quickSettingLayout;
+    QLabel *quicksettinglabel;
+    QVBoxLayout *quickchildLayout;
+    QGridLayout *quickgridLayout;
+    QToolButton *allsetting;
+    QToolButton *locale;
+    QToolButton *nightmode;
+    QToolButton *airplanemode;
+    QToolButton *display;
+    QToolButton *focuse;
+    QToolButton *bluetooth;
+    QToolButton *wifi;
+    QSpacerItem *verticalSpacer;
+    QHBoxLayout *brightnessLayout;
+    QToolButton *brightnessbtn;
+    QSlider *BrightnessSlider;
+    QHBoxLayout *nightModeLayout;
+    QToolButton *bluelightbtn;
+    QSlider *bluelightslider;
+    QHBoxLayout *soundLayout;
+    QToolButton *volumebtn;
+    QSlider *volumeslider;
+    QVBoxLayout *notifyLayout;
+    QHBoxLayout *notifyClearLayout;
+    QLabel *notificationlabel;
+    QPushButton *clearNotifyBtn;
+    QScrollArea *notifyScrollArea;
+    QWidget *notifyScrollContents;
+    QHBoxLayout *leaveLayout;
+    QToolButton *logout;
+    QToolButton *suspend;
+    QToolButton *lockscreen;
+    QToolButton *reboot;
+    QToolButton *shutdown;
+    wifiitemcontainer *wifipage;
+    soundservice *soundService = nullptr;
+    QLabel *audioPercentShow = nullptr;
+    QLabel *brightPercentShow = nullptr;
+    QLabel *bluePercentShow = nullptr;
+    bluetoothui *kmpbluetooth;
+    brightness *bright;
+    bluelight * blue;
+    airplaneControl *airplane;
 Q_SIGNALS:
 
 public Q_SLOTS:

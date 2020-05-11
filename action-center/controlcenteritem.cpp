@@ -52,6 +52,9 @@ controlcenteritem::controlcenteritem(QWidget *parent) : QWidget(parent) {
         bluePercentShow->setText (
                     QString::number(value).append ("%"));
     });
+    airplane = new airplaneControl(this);
+    connect (airplanemode, &QToolButton::clicked, airplane,&airplaneControl::airplaneModeOn);
+    connect (airplanemode, &QToolButton::clicked, airplane,&airplaneControl::airplaneModeOff );
 }
 void controlcenteritem::setupUi(QWidget *Form) {
 
