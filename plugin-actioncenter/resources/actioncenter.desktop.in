@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=LXQtPanel/Plugin
+Name=Action Center or Control Center
+Comment=A action center of a panel.
+Icon=preferences
+
