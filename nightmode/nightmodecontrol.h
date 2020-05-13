@@ -16,11 +16,11 @@ signals:
 
 public slots:
     void getdisplayName();
-    bool setmodeon();
+    bool setmodeon(QStringList displayname);
+    bool setmodeoff(QStringList displayname);
 
 private:
     QProcess process;
-
 };
 
 #endif // NIGHTMODECONTROL_H

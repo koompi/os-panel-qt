@@ -53,6 +53,8 @@ controlcenteritem::controlcenteritem(QWidget *parent) : QWidget(parent) {
                     QString::number(value).append ("%"));
     });
     night = new nightmodecontrol(this);
+    connect (nightmode,&QToolButton::clicked, night,&nightmodecontrol::getdisplayName);
+
 }
 void controlcenteritem::setupUi(QWidget *Form) {
 
