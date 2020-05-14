@@ -1,4 +1,3 @@
- 
 set(PLUGIN "taskbar")
 
 set(HEADERS
@@ -27,5 +26,4 @@ set(LIBRARIES
     lxqt-globalkeys
     Qt5Xdg
 )
-
 BUILD_LXQT_PLUGIN(${PLUGIN})

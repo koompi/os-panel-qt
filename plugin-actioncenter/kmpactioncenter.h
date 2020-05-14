@@ -1,14 +1,14 @@
 #ifndef LXQTACENTER_H
 #define LXQTACENTER_H
-#include "../panel/config/configpanelwidget.h"
 #include "../panel/ilxqtpanelplugin.h"
-#include "../panel/lxqtpanel.h"
 #include "kmpactioncenterview.h"
 #include <QObject>
 #include <QPointer>
 #include <QTimer>
 #include <QToolButton>
 
+class KMPActionCenterView;
+class LXQtPanel;
 class KMPActionCenter : public QObject, public ILXQtPanelPlugin {
   Q_OBJECT
 public:
@@ -20,7 +20,7 @@ public:
     return HaveConfigDialog | PreferRightAlignment;
   }
 
-  QWidget *widget() { return mButton; }
+  QWidget *widget();
   QDialog *configureDialog();
 
   void realign();
@@ -32,19 +32,8 @@ protected:
 
 private:
   void setButtonIcon();
-  QSize screenSize() const;
-  QPointer<QWidget> actionWidget;
-
-private:
-  void buildActionCenter();
-
-private:
-  QPointer<QToolButton> mButton;
-  QPointer<ConfigPanelWidget> configWidget;
-
-private slots:
-  void showActionCenter();
-  void showHideACtionCenter();
+  KMPActionCenterView *m_actionButton;
+  //  QPointer<ConfigPanelWidget> configWidget;
 };
 
 class KMPActionCenterPluginLibrary : public QObject,
