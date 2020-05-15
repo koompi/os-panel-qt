@@ -52,6 +52,7 @@ controlcenteritem::controlcenteritem(QWidget *parent) : QWidget(parent) {
         bluePercentShow->setText (
                     QString::number(value).append ("%"));
     });
+    connect(display, &QToolButton::clicked,[&]() { stackedWidget->setCurrentWidget(displaypage); });
 }
 void controlcenteritem::setupUi(QWidget *Form) {
 
@@ -537,14 +538,19 @@ void controlcenteritem::setupUi(QWidget *Form) {
 
 
     retranslateUi(Form);
-
+//add stackedwidget
     stackedWidget->setCurrentIndex(0);
     wifipage = new wifiitemcontainer(this);
     stackedWidget->addWidget (wifipage);
     wifipage->setParentStacked (stackedWidget);
     kmpbluetooth = new bluetoothui(this);
     stackedWidget->addWidget (kmpbluetooth);
+    displaypage = new displayui(this);
+    stackedWidget->addWidget (displaypage);
+    displaypage->setDisplayStacked (stackedWidget);
     QMetaObject::connectSlotsByName(Form);
+
+
 } // setupUi
 
 void controlcenteritem::retranslateUi(QWidget *Form) {
