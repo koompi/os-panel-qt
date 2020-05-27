@@ -52,7 +52,11 @@ controlcenteritem::controlcenteritem(QWidget *parent) : QWidget(parent) {
         bluePercentShow->setText (
                     QString::number(value).append ("%"));
     });
+<<<<<<< HEAD
     connect(display, &QToolButton::clicked,[&]() { stackedWidget->setCurrentWidget(displaypage); });
+=======
+    connect (locale,&QToolButton::clicked,[&]() { stackedWidget->setCurrentWidget(localepage);});
+>>>>>>> a5244a33f04b69a1e4ab66ca9f8f42b3a45f31e5
 }
 void controlcenteritem::setupUi(QWidget *Form) {
 
@@ -351,7 +355,7 @@ void controlcenteritem::setupUi(QWidget *Form) {
     QSizePolicy sizePolicy5(QSizePolicy::Expanding, QSizePolicy::Fixed);
     sizePolicy5.setHorizontalStretch(0);
     sizePolicy5.setVerticalStretch(4);
-     bluelightslider->setRange (30,90);
+    bluelightslider->setRange (30,90);
     sizePolicy5.setHeightForWidth(bluelightslider->sizePolicy().hasHeightForWidth());
     bluelightslider->setSizePolicy(sizePolicy5);
     bluelightslider->setMaximumSize(QSize(420, 16777215));
@@ -395,7 +399,7 @@ void controlcenteritem::setupUi(QWidget *Form) {
     audioPercentShow->setObjectName(QString::fromUtf8("audioPercentShow"));
     audioPercentShow->setText("90%");
     soundLayout->addWidget(audioPercentShow);
-//    quickchildLayout->addLayout(soundLayout);
+    //    quickchildLayout->addLayout(soundLayout);
     quickchildLayout->addLayout(soundLayout);
 
 
@@ -545,9 +549,15 @@ void controlcenteritem::setupUi(QWidget *Form) {
     wifipage->setParentStacked (stackedWidget);
     kmpbluetooth = new bluetoothui(this);
     stackedWidget->addWidget (kmpbluetooth);
+<<<<<<< HEAD
     displaypage = new displayui(this);
     stackedWidget->addWidget (displaypage);
     displaypage->setDisplayStacked (stackedWidget);
+=======
+    localepage = new localeUi(this);
+    stackedWidget->addWidget (localepage);
+    localepage->setLocaleStacked (stackedWidget);
+>>>>>>> a5244a33f04b69a1e4ab66ca9f8f42b3a45f31e5
     QMetaObject::connectSlotsByName(Form);
 
 

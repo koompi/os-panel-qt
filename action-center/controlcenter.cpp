@@ -15,11 +15,11 @@ controlcenter::controlcenter(QWidget *parent)
   resize(m_width * 0.25, m_height);
   MainWindow *windowParent = qobject_cast<MainWindow *>(parent);
   qInfo() << windowParent->getWifiBtn()->icon().name();
-  timeStop = new QTimer(this);
+//  timeStop = new QTimer(this);
   stackitem = new controlcenteritem(this);
-  timeStop->setInterval(5000);
+//  timeStop->setInterval(5000);
   networkservice *testcon = new networkservice(this);
-  connect(timeStop, &QTimer::timeout, this, &controlcenter::close);
+//  connect(timeStop, &QTimer::timeout, this, &controlcenter::close);
   connect(testcon, &networkservice::connectionStateChange, [&](bool status) {
     qDebug() << "Status: " << status << endl;
     if (status) {
@@ -58,7 +58,7 @@ bool controlcenter::event(QEvent *event) {
 void controlcenter::enterEvent(QEvent *event) {
   if (event->type() == QEvent::Enter) {
     qDebug() << "you enter concenter applet area";
-    timeStop->stop();
+//    timeStop->stop();
   }
   return QWidget::enterEvent(event);
 }
@@ -67,7 +67,7 @@ void controlcenter::leaveEvent(QEvent *event) {
 
   if (event->type() == QEvent::Leave) {
     qDebug() << "you left concenter applet area";
-    timeStop->start();
+//    timeStop->start();
   }
   return QWidget::leaveEvent(event);
 }

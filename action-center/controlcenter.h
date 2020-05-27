@@ -27,7 +27,7 @@ public
 
 private:
   int m_width, m_height;
-  QTimer *timeStop = nullptr;
+//  QTimer *timeStop = nullptr;
   controlcenteritem *stackitem = nullptr;
 
 public:

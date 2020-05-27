@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
 <!-- Written by QtCreator 4.12.0, 2020-05-23T11:49:28. -->
+=======
+<!-- Written by QtCreator 4.12.0, 2020-05-21T07:05:45. -->
+>>>>>>> a5244a33f04b69a1e4ab66ca9f8f42b3a45f31e5
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -342,7 +346,11 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
+<<<<<<< HEAD
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/sna/Documents/clone/build-koompi-os-panel-Desktop-Debug/koompi-panel</value>
+=======
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/vathana/DriveD/vathana/project/build-panel-Desktop-Debug/koompi-panel</value>
+>>>>>>> a5244a33f04b69a1e4ab66ca9f8f42b3a45f31e5
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
