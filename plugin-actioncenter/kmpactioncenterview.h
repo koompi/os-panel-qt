@@ -28,6 +28,8 @@ private:
   void showActionCenter();
   void toggleActionCenter();
   void handleActionCenterIconChanged(const QString &iconName);
+  // CONSTANT VARIABLE
+  const float ACTION_CENTER_WIDTH = 0.20;
 
 private slots:
   void handleShowWindow();

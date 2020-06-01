@@ -1,27 +1,21 @@
 #include "kmpactioncenterpopup.h"
 #include "../panel/lxqtpanel.h"
+#include "kmpcontrolcenteritem.h"
 #include <QDebug>
 #include <QEvent>
-
 #include <QGridLayout>
 #include <QLabel>
 #include <QToolButton>
 #include <QVBoxLayout>
 KMPActionCenterPopUP::KMPActionCenterPopUP(QWidget *parent)
-    : QDialog(parent, Qt::Dialog | Qt::WindowStaysOnTopHint |
+    : QWidget(parent, Qt::Dialog | Qt::WindowStaysOnTopHint |
                           Qt::CustomizeWindowHint | Qt::Popup |
                           Qt::X11BypassWindowManagerHint) {
   installEventFilter(this);
-  QVBoxLayout *actionLayout = new QVBoxLayout(this);
-  QGridLayout *actionGridLayout = new QGridLayout(this);
-  actionLayout->addLayout(actionGridLayout, 10);
-  for (int i = 0; i < 5; i++) {
-    QToolButton *item = new QToolButton(this);
-    item->setFixedSize(100, 100);
-    item->setAutoRaise(true);
-    item->setIcon(QIcon::fromTheme(QStringLiteral("network-wireless")));
-    actionGridLayout->addWidget(item);
-  }
+  actionItem = new KMPControlCenterItem(this);
+  QVBoxLayout *actionLayout = new QVBoxLayout(actionItem);
+  setStyleSheet(QStringLiteral("background-color:#2f3640;"));
+  setLayout(actionLayout);
 }
 
 bool KMPActionCenterPopUP::event(QEvent *event) {
@@ -29,7 +23,7 @@ bool KMPActionCenterPopUP::event(QEvent *event) {
   if (event->type() == QEvent::WindowDeactivate) {
     hide();
   }
-  return QDialog::event(event);
+  return QWidget::event(event);
 }
 
 bool KMPActionCenterPopUP::eventFilter(QObject *watched, QEvent *event) {
@@ -47,5 +41,5 @@ bool KMPActionCenterPopUP::eventFilter(QObject *watched, QEvent *event) {
       qInfo() << "LEAVE:";
     }
   }
-  return QDialog::eventFilter(this, event);
+  return QWidget::eventFilter(this, event);
 }

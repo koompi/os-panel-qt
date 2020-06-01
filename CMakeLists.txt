@@ -11,8 +11,6 @@ option(UPDATE_TRANSLATIONS "Update source translation translations/*.ts files" O
 option(WITH_SCREENSAVER_FALLBACK "Include support for converting the deprecated 'screensaver' plugin to 'quicklaunch'. This requires the lxqt-leave (lxqt-session) to be installed in runtime." ON)
 # plugin-mainmenu
 option(USE_MENU_CACHE "Use menu-cached (no noticable penalty even on a 2004 single core pentium if not used)" OFF)
-
-set(CMAKE_CXX_FLAGS -fsanitize=address)
 # additional cmake files
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 

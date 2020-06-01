@@ -31,7 +31,7 @@ QSize KMPActionCenterView::screenSize() const {
 
 void KMPActionCenterView::buildActionCenter() {
   m_actionPopup->setFixedSize(
-      screenSize().width() * 0.20,
+      screenSize().width() * ACTION_CENTER_WIDTH,
       screenSize().height() -
           (dynamic_cast<LXQtPanel *>(m_panel)->panelSize()));
   QRect showSize = m_plugin->calculatePopupWindowPos(m_actionPopup->size());
