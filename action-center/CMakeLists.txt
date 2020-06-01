@@ -15,9 +15,21 @@ find_package(kmpbluetooth)
 find_package(koompiwifi)
 find_package(koompisound)
 find_package (brightness)
+<<<<<<< HEAD
 find_package (nightmode)
 add_library(actioncenter ${SOURCES} ${MOC_HEADERS})
 
 target_include_directories(actioncenter PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 target_link_libraries(actioncenter PUBLIC koompibluetooth koompiwifi koompisound brightness nightmode Qt5::Widgets Qt5::Network Qt5::Concurrent )
+=======
+find_package (display)
+find_package (locale)
+add_library(actioncenter ${SOURCES} ${MOC_HEADERS})
+
+target_include_directories(actioncenter PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
+target_link_libraries(actioncenter PUBLIC koompibluetooth koompiwifi koompisound brightness display locale Qt5::Widgets Qt5::Network Qt5::Concurrent )
+
+
+
+>>>>>>> 87ccecf13317898ac5dee338c1ed225ec8082eea
 

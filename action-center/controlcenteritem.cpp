@@ -52,8 +52,14 @@ controlcenteritem::controlcenteritem(QWidget *parent) : QWidget(parent) {
         bluePercentShow->setText (
                     QString::number(value).append ("%"));
     });
+<<<<<<< HEAD
     night = new nightmodecontrol(this);
     connect (nightmode,&QToolButton::clicked, night,&nightmodecontrol::getdisplayName);
+=======
+
+    connect(display, &QToolButton::clicked,[&]() { stackedWidget->setCurrentWidget(displaypage); });
+    connect (locale,&QToolButton::clicked,[&]() { stackedWidget->setCurrentWidget(localepage);});
+>>>>>>> 87ccecf13317898ac5dee338c1ed225ec8082eea
 
 }
 void controlcenteritem::setupUi(QWidget *Form) {
@@ -353,7 +359,7 @@ void controlcenteritem::setupUi(QWidget *Form) {
     QSizePolicy sizePolicy5(QSizePolicy::Expanding, QSizePolicy::Fixed);
     sizePolicy5.setHorizontalStretch(0);
     sizePolicy5.setVerticalStretch(4);
-     bluelightslider->setRange (30,90);
+    bluelightslider->setRange (30,90);
     sizePolicy5.setHeightForWidth(bluelightslider->sizePolicy().hasHeightForWidth());
     bluelightslider->setSizePolicy(sizePolicy5);
     bluelightslider->setMaximumSize(QSize(420, 16777215));
@@ -397,7 +403,7 @@ void controlcenteritem::setupUi(QWidget *Form) {
     audioPercentShow->setObjectName(QString::fromUtf8("audioPercentShow"));
     audioPercentShow->setText("90%");
     soundLayout->addWidget(audioPercentShow);
-//    quickchildLayout->addLayout(soundLayout);
+    //    quickchildLayout->addLayout(soundLayout);
     quickchildLayout->addLayout(soundLayout);
 
 
@@ -540,14 +546,22 @@ void controlcenteritem::setupUi(QWidget *Form) {
 
 
     retranslateUi(Form);
-
+//add stackedwidget
     stackedWidget->setCurrentIndex(0);
     wifipage = new wifiitemcontainer(this);
     stackedWidget->addWidget (wifipage);
     wifipage->setParentStacked (stackedWidget);
     kmpbluetooth = new bluetoothui(this);
     stackedWidget->addWidget (kmpbluetooth);
+    displaypage = new displayui(this);
+    stackedWidget->addWidget (displaypage);
+    displaypage->setDisplayStacked (stackedWidget);
+    localepage = new localeUi(this);
+    stackedWidget->addWidget (localepage);
+    localepage->setLocaleStacked (stackedWidget);
     QMetaObject::connectSlotsByName(Form);
+
+
 } // setupUi
 
 void controlcenteritem::retranslateUi(QWidget *Form) {

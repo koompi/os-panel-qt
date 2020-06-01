@@ -27,6 +27,7 @@ bluetoothservice::~bluetoothservice() {}
 
 void bluetoothservice::connectSendDataBluetooth() {
   // Create a transfer manager
+
   QBluetoothTransferManager transferManager;
 
   // Create the transfer request and file to be sent
