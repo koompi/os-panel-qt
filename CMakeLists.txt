@@ -31,9 +31,7 @@ add_subdirectory(action-center)
 add_subdirectory(koompi-panel)
 add_subdirectory(taskmanager)
 add_subdirectory (brightness)
-<<<<<<< HEAD
 add_subdirectory (nightmode)
-=======
 add_subdirectory (display)
 add_subdirectory (locale-control)
->>>>>>> 87ccecf13317898ac5dee338c1ed225ec8082eea
+

@@ -7,13 +7,10 @@
 #include "displayui.h"
 #include "soundservice.h"
 #include "wifiitemcontainer.h"
-<<<<<<< HEAD
 #include "brightness.h"
 #include "bluelight.h"
 #include "nightmodecontrol.h"
-=======
 #include "localeui.h"
->>>>>>> 87ccecf13317898ac5dee338c1ed225ec8082eea
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
@@ -86,15 +83,10 @@ private:
   QLabel *bluePercentShow = nullptr;
   bluetoothui *kmpbluetooth;
   brightness *bright;
-<<<<<<< HEAD
   bluelight * blue;
   nightmodecontrol *night;
-=======
-  bluelight *blue;
   displayui *displaypage;
   localeUi *localepage;
-
->>>>>>> 87ccecf13317898ac5dee338c1ed225ec8082eea
 
 Q_SIGNALS:
 

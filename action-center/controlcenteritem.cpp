@@ -52,14 +52,10 @@ controlcenteritem::controlcenteritem(QWidget *parent) : QWidget(parent) {
         bluePercentShow->setText (
                     QString::number(value).append ("%"));
     });
-<<<<<<< HEAD
     night = new nightmodecontrol(this);
     connect (nightmode,&QToolButton::clicked, night,&nightmodecontrol::getdisplayName);
-=======
-
     connect(display, &QToolButton::clicked,[&]() { stackedWidget->setCurrentWidget(displaypage); });
     connect (locale,&QToolButton::clicked,[&]() { stackedWidget->setCurrentWidget(localepage);});
->>>>>>> 87ccecf13317898ac5dee338c1ed225ec8082eea
 
 }
 void controlcenteritem::setupUi(QWidget *Form) {
