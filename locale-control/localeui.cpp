@@ -162,7 +162,7 @@ void localeUi::setupUi(QWidget *Form)
     LanguageLayout = new QHBoxLayout();
     LanguageLayout->setObjectName(QString::fromUtf8("LanguageLayout"));
     languages = new QLabel(Form);
-    languages->setObjectName(QString::fromUtf8("languages"));
+    languages->setObjeTaskDatactName(QString::fromUtf8("languages"));
     sizePolicy.setHeightForWidth(languages->sizePolicy().hasHeightForWidth());
     languages->setSizePolicy(sizePolicy);
     languages->setFont(font1);
