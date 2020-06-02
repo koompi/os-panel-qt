@@ -2,6 +2,10 @@
 #include <QDebug>
 #include <tuple>
 #include <QSettings>
+#include <QTranslator>
+#include <QFile>
+#include <locale>
+#include <QtGlobal>
 localeUi::localeUi(QWidget *parent) : QWidget(parent)
 {
     setupUi (this);
@@ -17,17 +21,17 @@ localeUi::localeUi(QWidget *parent) : QWidget(parent)
     });
     //to check when item combobox changed
     connect (regionBox, &QComboBox::textActivated, [&](QString text){
-       emit onCurrentTextChanged (text);
+        emit onCurrentTextChanged (text);
     });
     connect (LanguageBox, &QComboBox::textActivated, [&](QString text){
-       emit onCurrentTextChanged (text);
+        emit onCurrentTextChanged (text);
     });
     connect (timezoneBox, &QComboBox::textActivated, [&](QString text){
-       emit onCurrentTextChanged (text);
+        emit onCurrentTextChanged (text);
     });
     connect (this, &localeUi::onCurrentTextChanged, [&](QString text){
-       qInfo() << text<<endl;
-       applyBtn->setEnabled (true);
+        qInfo() << text<<endl;
+        applyBtn->setEnabled (true);
     });
     localeCon = new localecontrol(this);
     connect (applyBtn, &QToolButton::clicked, [&](){
@@ -59,9 +63,15 @@ localeUi::localeUi(QWidget *parent) : QWidget(parent)
     timezoneValue->setText (timezoneBox->currentText ());
     // create locale setting configuration file
     localeSetting = new localeconfig(listcombos (), this);
-    localeSetting->loadSettings ();
+    if (localeSetting->isCreated()){
+        localeSetting->loadSettings();
+        qInfo() << "Locale config files created" <<endl;
+    }
+    else{
+        qInfo() << "Locale config files not created" <<endl;
+        localeSetting->saveSettings();
+    }
     updateDescription ();
-
 }
 
 void localeUi::setupUi(QWidget *Form)
@@ -444,7 +454,7 @@ void localeUi::setRegionName()
     qDebug() << "setRegionName called"<<endl;
     for (int i = 1; i < QLocale::LastCountry-1; ++i)
     {
-        //        qDebug()<<QLocale::countryToString((QLocale::Country)i);
+        //         qDebug() << QLocale::languageToString(QLocale::English);
         regionBox->addItem ((QLocale::countryToString((QLocale::Country)i)));
     }
 }
@@ -457,12 +467,39 @@ void localeUi::setLanguageName()
                 QLocale::AnyScript,
                 QLocale::AnyCountry);
     QSet<QString> iso639Languages;
-
+    QFile file("/home/sna/Documents/locale.txt", this);
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append )){
+        return;
+    }
+    QTextStream out(&file);
+    QStringList tempList;
+    int count_lang = 0;
     for(const QLocale &locale : allLocales) {
         iso639Languages.insert(QLocale::languageToString(locale.language()));
-        LanguageBox->addItem (QLocale::languageToString(locale.language()));
+        if(!locale.uiLanguages().first().isEmpty()){
+//            tempList.append(locale.uiLanguages().filter(QRegExp("^[A-Za-z]+ [-]{1}[A-Za-z]+$")));
+            tempList.append(locale.uiLanguages().first());
+        }
+        LanguageBox->addItem(QLocale::languageToString(locale.language()));
+        out << locale.nativeLanguageName()<<"-"<<locale.nativeCountryName()<<endl;
+        count_lang +=1;
     }
-    //    rqDebug() << iso639Languages;
+    qDebug() << "List locale: " << tempList<<endl;
+    for (QString &locale : tempList) {
+        locale.replace('-', '_');
+        qDebug() << locale<<endl;
+        out << locale<<endl;
+    }
+//    for(int i =0;i!=LanguageBox->count();++i){
+//        qDebug() << "Item added" <<endl;
+//        if(!tempList.at(i).isEmpty()){
+//        LanguageBox->setItemText(i, LanguageBox->itemText(i).append(tempList.at(i)));
+//        }else{
+
+//        }
+//    }
+    file.flush();
+    file.close();
 }
 
 void localeUi::setTimezone()
@@ -485,24 +522,25 @@ void localeUi::setTimeFormat()
 
 QList<QComboBox *> localeUi::listcombos()
 {
-    return {regionBox,LanguageBox, timeformatBox, timezoneBox};
+    return {regionBox,LanguageBox,timeformatBox,timezoneBox};
 }
 
 void localeUi::updateDescription()
 {
-    regionValue->setText (regionBox->currentText ());
-    langValue->setText (LanguageBox->currentText ());
-    timeformValue->setText (timeformatBox->currentText ());
-    timezoneValue->setText (timezoneBox->currentText ());
+    regionValue->setText(regionBox->currentText ());
+    langValue->setText(LanguageBox->currentText ());
+    timeformValue->setText(timeformatBox->currentText ());
+    timezoneValue->setText(timezoneBox->currentText ());
 
 }
 //
 const std::tuple<QString, QString>  localeUi::currentLang()
 {
     QLocale locale;
+    qDebug() << "output in tuple" <<endl;
+
     QString curlang = locale.languageToString (locale.language ());
     locale.countryToString (QLocale::Country::UnitedStates);
-    qDebug() << curlang<<endl;
     return std::tuple(curlang, locale.countryToString (QLocale::Country::UnitedStates));
 }
 
