@@ -71,5 +71,5 @@ Thumbs.db
 *.dll
 *.exe
 # CMakeLists.txt.user generations
-CMakeLists.*.user.*
-CMakeLists.txt.user
+*.user.*
+*.user
