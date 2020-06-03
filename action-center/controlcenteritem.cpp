@@ -12,7 +12,7 @@
 #include <QGuiApplication>
 #include <QProcess>
 #include <QScreen>
-
+#include <lxqt/LXQt/Settings>
 controlcenteritem::controlcenteritem(QWidget *parent) : QWidget(parent) {
     setupUi(this);
     soundService = new soundservice(this);
@@ -545,7 +545,12 @@ void controlcenteritem::setupUi(QWidget *Form) {
     wifipage->setParentStacked (stackedWidget);
     kmpbluetooth = new bluetoothui(this);
     stackedWidget->addWidget (kmpbluetooth);
-    localepage = new localeUi(this);
+    LXQt::Settings settings(QStringLiteral ("koompi-locale"));
+//    LXQt::ConfigDialog * configDialog = new LXQt::ConfigDialog(QObject::tr("LXQt Locale Configuration"), &settings);
+    localepage = new localecontrol(&settings, this);
+//    QObject::connect (localepage)
+    QObject::connect(localepage, SIGNAL(reset()), localepage, SLOT(initControls()));
+    QObject::connect(localepage, SIGNAL(save()), localepage, SLOT(saveSettings()));
     stackedWidget->addWidget (localepage);
     localepage->setLocaleStacked (stackedWidget);
     QMetaObject::connectSlotsByName(Form);

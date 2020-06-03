@@ -6,7 +6,7 @@
 #include "wifiitemcontainer.h"
 #include "brightness.h"
 #include "bluelight.h"
-#include "localeui.h"
+#include "localecontrol.h"
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
@@ -80,7 +80,7 @@ private:
   bluetoothui *kmpbluetooth;
   brightness *bright;
   bluelight * blue;
-  localeUi *localepage;
+  localecontrol *localepage;
 
 Q_SIGNALS:
 

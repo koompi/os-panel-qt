@@ -30,4 +30,4 @@ add_library(locale
     )
 
 target_include_directories(locale PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
-target_link_libraries(locale PRIVATE Qt5::Widgets )
+target_link_libraries(locale PRIVATE Qt5::Widgets lxqt)
