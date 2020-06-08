@@ -11,14 +11,11 @@ class nightmodecontrol : public QObject
 public:
     explicit nightmodecontrol(QObject *parent = nullptr);
     QStringList decorate_output(QString &output);
-signals:
-    void onReadyGetDisplayName(QStringList displayName);
 
 public slots:
-    void getdisplayName();
-    bool setmodeon(QStringList displayname);
-    bool setmodeoff(QStringList displayname);
-
+    bool startNightmode();
+    bool stopNightmode();
+    
 private:
     QProcess process;
 };

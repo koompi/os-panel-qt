@@ -53,7 +53,8 @@ controlcenteritem::controlcenteritem(QWidget *parent) : QWidget(parent) {
                     QString::number(value).append ("%"));
     });
     night = new nightmodecontrol(this);
-    connect (nightmode,&QToolButton::clicked, night,&nightmodecontrol::getdisplayName);
+    connect (nightmode,&QToolButton::clicked, night,&nightmodecontrol::startNightmode );
+//    connect (nightmode,&QToolButton::clicked, night,&nightmodecontrol::stopNightmode);
     connect(display, &QToolButton::clicked,[&]() { stackedWidget->setCurrentWidget(displaypage); });
     connect (locale,&QToolButton::clicked,[&]() { stackedWidget->setCurrentWidget(localepage);});
 
