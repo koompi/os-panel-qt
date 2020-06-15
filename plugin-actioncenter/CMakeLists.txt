@@ -13,7 +13,7 @@ set(HEADERS
     kmpcontrolcenteritem.h
     actioncenterhome.h
     actiondatetime.h
-    ui_actioncenterhome.h
+    actioncenterui.h
 )
 set(SOURCES
     kmpactioncenter.cpp

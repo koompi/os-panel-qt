@@ -1,4 +1,4 @@
-#include "ui_actioncenterhome.h"
+#include "actioncenterui.h"
 #include "actioncenterhome.h"
 #include <QThread>
 #include <QDebug>
@@ -28,4 +28,3 @@ void ActionCenterHome::initDependency()
 {
    actionDateTime = new ActionDateTime();
 }
-
