@@ -1,18 +1,19 @@
  
 set(PLUGIN "actioncenter")
 
-
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC OFF)
+set(CMAKE_AUTORCC ON)
 set(HEADERS
     kmpactioncenter.h
     kmpactioncenterview.h
     kmpactioncenterpopup.h
     kmpcontrolcenteritem.h
     actioncenterhome.h
-    actionbutton.h
-    actionsmbutton.h
-    sessionbutton.h
-    actionbuttonstyle.h
     actiondatetime.h
+    ui_actioncenterhome.h
 )
 set(SOURCES
     kmpactioncenter.cpp

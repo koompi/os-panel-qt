@@ -2,13 +2,25 @@
 #include <QTime>
 #include <QTimer>
 #include <QDate>
-ActionDateTime::ActionDateTime(QObject *parent, QWidget * timeparent, QString name) :
-    QObject(parent),timeParent(timeparent),timeObjName(name)
+#include <QDebug>
+int ActionDateTime::getDuration() const
+{
+    return duration;
+}
+
+void ActionDateTime::setDuration(int value)
+{
+        qInfo() << "set duration value after 2000 millis"<<Qt::endl;
+        duration = value;
+}
+
+ActionDateTime::ActionDateTime(QObject *parent, int timeset) :
+    QObject(parent), duration(timeset)
 {
     QTimer * timer = new QTimer(parent);
     connect(timer, &QTimer::timeout, this, &ActionDateTime::showTime);
     connect(timer, &QTimer::timeout, this, &ActionDateTime::showDate);
-    timer->start(1000);
+    timer->start(duration);
 }
 
 QLabel *ActionDateTime::createDate()
@@ -47,6 +59,7 @@ QLabel *ActionDateTime::createTime()
 void ActionDateTime::showTime()
 {
     QTime currentTime;
+    qInfo() << "this is function run after 30 mins"<<Qt::endl;
     QString time = currentTime.currentTime().toString(QString::fromUtf8("hh:mm AP"));
     emit timeChanged(time);
 }
@@ -54,8 +67,9 @@ void ActionDateTime::showTime()
 void ActionDateTime::showDate()
 {
     QDate currentDate;
-   QString date = currentDate.currentDate().toString(Qt::DateFormat::TextDate);
-  emit dateChanged(date);
+    qInfo() << "this is function run after 30 mins"<<Qt::endl;
+    QString date = currentDate.currentDate().toString(Qt::DateFormat::TextDate);
+    emit dateChanged(date);
 }
 
 void ActionDateTime::chnageDateFormat(const QString &formatString)

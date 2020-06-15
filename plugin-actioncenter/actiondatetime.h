@@ -9,10 +9,14 @@ class ActionDateTime : public QObject
 private:
     QWidget * timeParent;
     QString timeObjName;
+    int duration;
 public:
-    explicit ActionDateTime(QObject *parent = nullptr, QWidget * timeparent= nullptr, QString name=QStringLiteral("action_time"));
+    explicit ActionDateTime(QObject *parent = nullptr, int duration = 2000);
     QLabel * createTime();
     QLabel * createDate();
+    int getDuration() const;
+    void setDuration(int value);
+
 signals:
     void timeChanged(QString time);
     void dateChanged(QString date);
