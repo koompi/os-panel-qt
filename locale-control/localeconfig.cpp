@@ -26,8 +26,8 @@ void localeconfig::loadSettings()
     list_combos.at (1)->setCurrentText (language);
     list_combos.at (2)->setCurrentText (timeformat);
     list_combos.at (3)->setCurrentText (timezone);
-    qInfo() <<"Format : " <<format<<endl;
-    qInfo() << "Data loaded ..." <<endl;
+    qInfo() <<"Format : " <<format<<Qt::endl;
+    qInfo() << "Data loaded ..." <<Qt::endl;
 }
 
 void localeconfig::updateSettings (QList<QComboBox *> combox)
@@ -43,7 +43,7 @@ void localeconfig::updateSettings (QList<QComboBox *> combox)
     settings->setValue ("timezone", combox.at(3)->currentText ());
     settings->endGroup ();
 
-   qInfo() << "updated successfully......"<<endl;
+   qInfo() << "updated successfully......"<<Qt::endl;
 }
 
 void localeconfig::resetSettings()

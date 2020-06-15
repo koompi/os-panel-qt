@@ -14,12 +14,12 @@ set(MOC_HEADERS
     nightmodecontrol.cpp
     nightmodecontrol.h
     )
-
-find_package(Qt5 COMPONENTS Widgets  REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Concurrent  REQUIRED)
 add_library(nightmode
       ${SOURCES}
       ${MOC_HEADERS}
+
 )
 
 target_include_directories(nightmode PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
-target_link_libraries(nightmode PRIVATE Qt5::Widgets )
+target_link_libraries(nightmode PRIVATE Qt5::Widgets Qt5::Concurrent )

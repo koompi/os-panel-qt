@@ -9,7 +9,7 @@ timeapplet::timeapplet(QObject *parent) : QObject(parent) {
 
 void timeapplet::calculateTime() {
   QTime time = QTime::currentTime();
-  qInfo() << time << endl;
+  qInfo() << time <<Qt::endl;
   QString time_text = time.toString("hh : mm : ss");
   emit timeout(time_text);
 }

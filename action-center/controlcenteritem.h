@@ -87,6 +87,11 @@ private:
   nightmodecontrol *night;
   displayui *displaypage;
   localeUi *localepage;
+  bool isClicked {false};
+public slots:
+  void setBrightState(bool checked);
+  void setBluelightState(bool checked);
+  void setNightState(bool checked);
 
 Q_SIGNALS:
 

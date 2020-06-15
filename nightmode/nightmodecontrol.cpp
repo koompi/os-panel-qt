@@ -1,5 +1,6 @@
 #include "nightmodecontrol.h"
 #include <QDebug>
+#include <QtConcurrent/QtConcurrent>
 nightmodecontrol::nightmodecontrol(QObject *parent) : QObject(parent)
 {
     
@@ -7,24 +8,24 @@ nightmodecontrol::nightmodecontrol(QObject *parent) : QObject(parent)
 
 bool nightmodecontrol::startNightmode()
 {
-    process.start("nightmode" );
-        while(!process.waitForFinished()){
-            process.readAll();
-        }
-        qDebug()<< "nightmode on";
-        process.close();
-        return true;
+
+    process.startDetached ("redshift-gtk");
+    process.waitForStarted();
+    process.waitForFinished(-1);
+    process.close();
+       qDebug()<< "red shift run";
+       return true;
+
 }
 
 bool nightmodecontrol::stopNightmode()
 {
-    process.start("nightmode" , QStringList()<< "off");
-        while(!process.waitForFinished()){
-            process.readAll();
-        }
-        qDebug()<< "nightmode off";
-        process.close();
-        return true;
+    process.startDetached ("sudo", QStringList() << "killall" << "redshift");
+    process.waitForStarted();
+    process.waitForFinished(-1);
+    process.close();
+       qDebug()<< "red shift off";
+       return true;
 }
 
 

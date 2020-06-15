@@ -289,16 +289,16 @@ void displayui::setDisplayStacked(QStackedWidget *value)
 
 void displayui::laptop_display(QStringList displayname)
 {
-    qDebug() << displayname<<endl;
-    qDebug() <<"first:"<< displayname.first () << endl;
-    qDebug() <<"last: "<< displayname.last ()<<endl;
+    qDebug() << displayname<<Qt::endl;
+    qDebug() <<"first:"<< displayname.first () <<Qt::endl;
+    qDebug() <<"last: "<< displayname.last ()<<Qt::endl;
     QProcess * disprocess = new QProcess(this);
     // functor base signal Overload
     connect(disprocess, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
 
             [&]  (int exitCode, QProcess::ExitStatus exitStatus)
     {
-        qDebug() << "Exit code"<< exitCode<< "\t" << "Status: " << exitStatus<<endl;//to check the process
+        qDebug() << "Exit code"<< exitCode<< "\t" << "Status: " << exitStatus<<Qt::endl;//to check the process
     });
     disprocess->startDetached("xrandr", QStringList() <<"--output"<<displayname.last ()<<"--off"<<"--output"<<displayname.first ()<<"--auto"<<"--primary");
     disprocess->waitForFinished();
@@ -319,7 +319,7 @@ void displayui::unify_display(QStringList displayname)
 {
     qInfo() << "unify called";
     if(on_getDataSplit.first ().compare (on_getDataSplit.last ()) == 0){
-        qInfo() << "Both sreen equal "<<endl;
+        qInfo() << "Both sreen equal "<<Qt::endl;
         QProcess * unifyprocess = new QProcess(this);
         if(displayname.first () == getPrimaryScreen ()->name ()){
             unifyprocess->startDetached("xrandr", QStringList() <<"--output"<<displayname.last ()<<"--auto"<<"--output"<<displayname.first ());
@@ -334,8 +334,8 @@ void displayui::unify_display(QStringList displayname)
             return;
         }
     }else{
-        qInfo() << "Both screen not equal" <<endl;
-        qInfo() << on_getDataSplit.first ()<<endl;
+        qInfo() << "Both screen not equal" <<Qt::endl;
+        qInfo() << on_getDataSplit.first ()<<Qt::endl;
         QProcess::execute ("xrandr", QStringList() <<"--addmode"<<displayname.last ()<<on_getDataSplit.first ());
         QProcess::execute ("xrandr", QStringList() <<"--output"<<displayname.last ()<<"--mode"<<QString(on_getDataSplit.first ()));
         QProcess::execute ("xrandr", QStringList() <<"--output"<<displayname.first ()<<"--mode"<<QString(on_getDataSplit.first ()));

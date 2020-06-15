@@ -46,15 +46,17 @@ controlcenteritem::controlcenteritem(QWidget *parent) : QWidget(parent) {
     connect(BrightnessSlider, &QSlider::valueChanged, [&](const int & value) {
         brightPercentShow->setText(QString::number (value).append ("%"));
     });
+    connect (brightnessbtn, &QToolButton::toggled, this, &controlcenteritem::setBrightState);
     blue = new bluelight(this);
     connect (bluelightslider,&QSlider::valueChanged, blue,&bluelight::getCurrentValue );
     connect (bluelightslider,&QSlider::valueChanged, [&](const int & value){
         bluePercentShow->setText (
                     QString::number(value).append ("%"));
     });
+    connect (bluelightbtn, &QToolButton::toggled,this, &controlcenteritem::setBluelightState);
     night = new nightmodecontrol(this);
-    connect (nightmode,&QToolButton::clicked, night,&nightmodecontrol::startNightmode );
-//    connect (nightmode,&QToolButton::clicked, night,&nightmodecontrol::stopNightmode);
+    connect (nightmode,&QToolButton::toggled , this, &controlcenteritem::setNightState );
+    //    connect (nightmode,&QToolButton::clicked, night,&nightmodecontrol::stopNightmode);
     connect(display, &QToolButton::clicked,[&]() { stackedWidget->setCurrentWidget(displaypage); });
     connect (locale,&QToolButton::clicked,[&]() { stackedWidget->setCurrentWidget(localepage);});
 
@@ -178,6 +180,7 @@ void controlcenteritem::setupUi(QWidget *Form) {
     nightmode->setAutoExclusive(false);
     nightmode->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     nightmode->setAutoRaise(true);
+    nightmode->setCheckable (true);
 
     quickgridLayout->addWidget(nightmode, 1, 2, 1, 1);
 
@@ -313,6 +316,7 @@ void controlcenteritem::setupUi(QWidget *Form) {
     brightnessbtn->setIcon(icon8);
     brightnessbtn->setIconSize(QSize(20, 20));
     brightnessbtn->setAutoRaise(true);
+    brightnessbtn->setCheckable (true);
 
     brightnessLayout->addWidget(brightnessbtn);
 
@@ -348,6 +352,7 @@ void controlcenteritem::setupUi(QWidget *Form) {
     bluelightbtn->setIcon(icon9);
     bluelightbtn->setIconSize(QSize(20, 20));
     bluelightbtn->setAutoRaise(true);
+    bluelightbtn->setCheckable (true);
 
     nightModeLayout->addWidget(bluelightbtn);
 
@@ -543,7 +548,7 @@ void controlcenteritem::setupUi(QWidget *Form) {
 
 
     retranslateUi(Form);
-//add stackedwidget
+    //add stackedwidget
     stackedWidget->setCurrentIndex(0);
     wifipage = new wifiitemcontainer(this);
     stackedWidget->addWidget (wifipage);
@@ -590,6 +595,54 @@ QStackedWidget *controlcenteritem::getStackedWidget() const {
 
 void controlcenteritem::setStackedWidget(QStackedWidget *value) {
     stackedWidget = value;
+}
+
+
+void controlcenteritem::setBrightState(bool checked)
+{
+    if(checked){
+        BrightnessSlider->setEnabled (false);
+        qInfo() << "enable "<<Qt::endl;
+    }else{
+        BrightnessSlider->setEnabled (true);
+        qInfo() << "disable"<<Qt::endl;
+    }
+}
+
+void controlcenteritem::setBluelightState(bool checked)
+{
+    if(checked){
+        bluelightslider->setEnabled (false);
+        qInfo() << "enable "<<Qt::endl;
+    }else{
+        bluelightslider->setEnabled (true);
+        qInfo() << "disable"<<Qt::endl;
+    }
+}
+
+void controlcenteritem::setNightState(bool checked)
+{
+    if(checked){
+        nightmode->setIcon (QIcon("redshift-status-off"));
+        qInfo() << "enable "<<Qt::endl;
+        QProcess process;
+        process.startDetached ("redshift-gtk");
+        process.waitForStarted();
+        process.waitForFinished(-1);
+        process.close();
+           qDebug()<< "red shift runn";
+
+    }else{
+        nightmode->setIcon (QIcon("redshift-status-on"));
+        qInfo() << "disable"<<Qt::endl;
+        QProcess process;
+        process.startDetached ("sudo", QStringList() << "killall" << "redshift");
+        process.waitForStarted();
+        process.waitForFinished(-1);
+        process.close();
+           qDebug()<< "red shift off";
+
+    }
 }
 
 // void controlcenteritem::notifySoundChange(int volume) {

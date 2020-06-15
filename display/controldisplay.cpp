@@ -6,7 +6,7 @@ controldisplay::controldisplay(QObject *parent) : QObject(parent)
 }
 QStringList  controldisplay::decorate_output(QString &output)
 {
-    qDebug() << output<<endl;
+    qDebug() << output<<Qt::endl;
     QStringList displayList = output.split ('\n');
     displayList.pop_back ();
     return displayList;
