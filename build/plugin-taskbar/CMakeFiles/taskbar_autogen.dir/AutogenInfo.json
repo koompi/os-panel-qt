@@ -1,0 +1,172 @@
+{
+	"BUILD_DIR" : "/home/vathana/DriveD/vathana/project/koompi-os-panel/build/plugin-taskbar/taskbar_autogen",
+	"CMAKE_BINARY_DIR" : "/home/vathana/DriveD/vathana/project/koompi-os-panel/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/vathana/DriveD/vathana/project/koompi-os-panel/build/plugin-taskbar",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/vathana/DriveD/vathana/project/koompi-os-panel/plugin-taskbar",
+	"CMAKE_EXECUTABLE" : "/usr/bin/cmake",
+	"CMAKE_SOURCE_DIR" : "/home/vathana/DriveD/vathana/project/koompi-os-panel",
+	"DEP_FILE" : "",
+	"DEP_FILE_RULE_NAME" : "",
+	"HEADERS" : 
+	[
+		[
+			"/home/vathana/DriveD/vathana/project/koompi-os-panel/plugin-taskbar/lxqtgrouppopup.h",
+			"MU",
+			"EWIEGA46WW/moc_lxqtgrouppopup.cpp"
+		],
+		[
+			"/home/vathana/DriveD/vathana/project/koompi-os-panel/plugin-taskbar/lxqttaskbar.h",
+			"MU",
+			"EWIEGA46WW/moc_lxqttaskbar.cpp"
+		],
+		[
+			"/home/vathana/DriveD/vathana/project/koompi-os-panel/plugin-taskbar/lxqttaskbarconfiguration.h",
+			"MU",
+			"EWIEGA46WW/moc_lxqttaskbarconfiguration.cpp"
+		],
+		[
+			"/home/vathana/DriveD/vathana/project/koompi-os-panel/plugin-taskbar/lxqttaskbarplugin.h",
+			"MU",
+			"EWIEGA46WW/moc_lxqttaskbarplugin.cpp"
+		],
+		[
+			"/home/vathana/DriveD/vathana/project/koompi-os-panel/plugin-taskbar/lxqttaskbutton.h",
+			"MU",
+			"EWIEGA46WW/moc_lxqttaskbutton.cpp"
+		],
+		[
+			"/home/vathana/DriveD/vathana/project/koompi-os-panel/plugin-taskbar/lxqttaskgroup.h",
+			"MU",
+			"EWIEGA46WW/moc_lxqttaskgroup.cpp"
+		]
+	],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "/home/vathana/DriveD/vathana/project/koompi-os-panel/build/plugin-taskbar/taskbar_autogen/include",
+	"MOC_COMPILATION_FILE" : "/home/vathana/DriveD/vathana/project/koompi-os-panel/build/plugin-taskbar/taskbar_autogen/mocs_compilation.cpp",
+	"MOC_DEFINITIONS" : 
+	[
+		"LXQT_DATA_DIR=\"/usr/local/share\"",
+		"LXQT_ETC_XDG_DIR=\"/etc/xdg\"",
+		"LXQT_GRAPHICS_DIR=\"/usr/local/share/lxqt/graphics\"",
+		"LXQT_MAJOR_VERSION=\"0\"",
+		"LXQT_MINOR_VERSION=\"15\"",
+		"LXQT_PANEL_VERSION=\"0.15.0\"",
+		"LXQT_PATCH_VERSION=\"1\"",
+		"LXQT_RELATIVE_SHARE_DIR=\"lxqt\"",
+		"LXQT_RELATIVE_SHARE_TRANSLATIONS_DIR=\"lxqt/translations\"",
+		"LXQT_SHARE_DIR=\"/usr/local/share/lxqt\"",
+		"LXQT_SHARE_TRANSLATIONS_DIR=\"/usr/local/share/lxqt/translations\"",
+		"LXQT_VERSION=\"0.15.1\"",
+		"PLUGIN_DIR=\"/usr/local/lib/lxqt-panel\"",
+		"QT_CORE_LIB",
+		"QT_DBUS_LIB",
+		"QT_GUI_LIB",
+		"QT_NO_CAST_FROM_ASCII",
+		"QT_NO_CAST_FROM_BYTEARRAY",
+		"QT_NO_CAST_TO_ASCII",
+		"QT_NO_DEBUG",
+		"QT_NO_FOREACH",
+		"QT_NO_URL_CAST_FROM_STRING",
+		"QT_SVG_LIB",
+		"QT_USE_QSTRINGBUILDER",
+		"QT_WIDGETS_LIB",
+		"QT_X11EXTRAS_LIB",
+		"QT_XML_LIB",
+		"WITH_MAINMENU_PLUGIN",
+		"WITH_TASKBAR_PLUGIN"
+	],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : 
+	[
+		"/home/vathana/DriveD/vathana/project/koompi-os-panel/build/plugin-taskbar",
+		"/home/vathana/DriveD/vathana/project/koompi-os-panel/plugin-taskbar",
+		"/usr/include/qt",
+		"/usr/include/qt/QtWidgets",
+		"/usr/include/qt/QtGui",
+		"/usr/include/qt/QtCore",
+		"/usr/lib/qt/mkspecs/linux-g++",
+		"/usr/local/include/lxqt",
+		"/usr/local/include/lxqt/LXQt",
+		"/usr/include/KF5/KWindowSystem",
+		"/usr/include/KF5",
+		"/usr/include/qt/QtDBus",
+		"/usr/include/qt5xdg",
+		"/usr/include/qt/QtXml",
+		"/usr/include/qt5xdgiconloader",
+		"/usr/include/qt5xdgiconloader/3.5.0",
+		"/usr/include/qt/QtSvg",
+		"/usr/include/qt/QtX11Extras",
+		"/usr/include/lxqt-globalkeys",
+		"/usr/include",
+		"/usr/include/c++/10.1.0",
+		"/usr/include/c++/10.1.0/x86_64-pc-linux-gnu",
+		"/usr/include/c++/10.1.0/backward",
+		"/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include",
+		"/usr/local/include",
+		"/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed"
+	],
+	"MOC_MACRO_NAMES" : [ "Q_OBJECT", "Q_GADGET", "Q_NAMESPACE", "Q_NAMESPACE_EXPORT" ],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : true,
+	"MOC_PREDEFS_CMD" : 
+	[
+		"/usr/bin/c++",
+		"-dM",
+		"-E",
+		"-c",
+		"/usr/share/cmake-3.17/Modules/CMakeCXXCompilerABI.cpp"
+	],
+	"MOC_PREDEFS_FILE" : "/home/vathana/DriveD/vathana/project/koompi-os-panel/build/plugin-taskbar/taskbar_autogen/moc_predefs.h",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : [],
+	"MULTI_CONFIG" : false,
+	"PARALLEL" : 2,
+	"PARSE_CACHE_FILE" : "/home/vathana/DriveD/vathana/project/koompi-os-panel/build/plugin-taskbar/CMakeFiles/taskbar_autogen.dir/ParseCache.txt",
+	"QT_MOC_EXECUTABLE" : "/usr/bin/moc",
+	"QT_UIC_EXECUTABLE" : "/usr/bin/uic",
+	"QT_VERSION_MAJOR" : 5,
+	"QT_VERSION_MINOR" : 15,
+	"SETTINGS_FILE" : "/home/vathana/DriveD/vathana/project/koompi-os-panel/build/plugin-taskbar/CMakeFiles/taskbar_autogen.dir/AutogenUsed.txt",
+	"SOURCES" : 
+	[
+		[
+			"/home/vathana/DriveD/vathana/project/koompi-os-panel/build/plugin-taskbar/LXQtPluginTranslationLoader.cpp",
+			"MU"
+		],
+		[
+			"/home/vathana/DriveD/vathana/project/koompi-os-panel/plugin-taskbar/lxqtgrouppopup.cpp",
+			"MU"
+		],
+		[
+			"/home/vathana/DriveD/vathana/project/koompi-os-panel/plugin-taskbar/lxqttaskbar.cpp",
+			"MU"
+		],
+		[
+			"/home/vathana/DriveD/vathana/project/koompi-os-panel/plugin-taskbar/lxqttaskbarconfiguration.cpp",
+			"MU"
+		],
+		[
+			"/home/vathana/DriveD/vathana/project/koompi-os-panel/plugin-taskbar/lxqttaskbarplugin.cpp",
+			"MU"
+		],
+		[
+			"/home/vathana/DriveD/vathana/project/koompi-os-panel/plugin-taskbar/lxqttaskbutton.cpp",
+			"MU"
+		],
+		[
+			"/home/vathana/DriveD/vathana/project/koompi-os-panel/plugin-taskbar/lxqttaskgroup.cpp",
+			"MU"
+		]
+	],
+	"UIC_OPTIONS" : [],
+	"UIC_SEARCH_PATHS" : [],
+	"UIC_SKIP" : [],
+	"UIC_UI_FILES" : [],
+	"VERBOSITY" : 0
+}

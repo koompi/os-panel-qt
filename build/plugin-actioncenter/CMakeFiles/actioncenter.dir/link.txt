@@ -1,0 +1,2 @@
+/usr/bin/ar qc libactioncenter.a  CMakeFiles/actioncenter.dir/actioncenter_autogen/mocs_compilation.cpp.o
+/usr/bin/ranlib libactioncenter.a

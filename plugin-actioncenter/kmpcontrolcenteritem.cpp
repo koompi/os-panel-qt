@@ -28,11 +28,16 @@ void KMPControlCenterItem::setupUi(QWidget *Form) {
     stackedWidget = new QStackedWidget(Form);
     stackedWidget->setObjectName(QString::fromUtf8("stackedWidget"));
     homePage = new ActionCenterHome(this);
+    homePage->setStackWidget (stackedWidget);
     homePage->setObjectName(QString::fromUtf8("homePage"));
+    display =new displayConfig(this);
+    display->setStack (stackedWidget);
+    display->setObjectName (QString::fromUtf8 ("displayPage"));
 //    pushButton = new QPushButton(page);
 //    pushButton->setObjectName(QString::fromUtf8("pushButton"));
-
+    // make sure initial your object in order
     stackedWidget->addWidget(homePage);
+    stackedWidget->addWidget (display);
     page_2 = new QWidget();
     page_2->setObjectName(QString::fromUtf8("page_2"));
     verticalLayout_3 = new QVBoxLayout(page_2);

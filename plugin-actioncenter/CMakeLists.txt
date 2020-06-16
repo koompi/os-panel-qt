@@ -14,6 +14,9 @@ set(HEADERS
     actioncenterhome.h
     actiondatetime.h
     actioncenterui.h
+    display/displayUi.h
+    display/displayconfig.h
+
 )
 set(SOURCES
     kmpactioncenter.cpp
@@ -22,6 +25,7 @@ set(SOURCES
     kmpcontrolcenteritem.cpp
     actioncenterhome.cpp
     actiondatetime.cpp
+    display/displayconfig.cpp
 )
 
 set(UIS

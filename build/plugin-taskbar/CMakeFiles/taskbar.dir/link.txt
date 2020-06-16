@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtaskbar.a  CMakeFiles/taskbar.dir/taskbar_autogen/mocs_compilation.cpp.o CMakeFiles/taskbar.dir/lxqttaskbar.cpp.o CMakeFiles/taskbar.dir/lxqttaskbutton.cpp.o CMakeFiles/taskbar.dir/lxqttaskbarconfiguration.cpp.o CMakeFiles/taskbar.dir/lxqttaskbarplugin.cpp.o CMakeFiles/taskbar.dir/lxqttaskgroup.cpp.o CMakeFiles/taskbar.dir/lxqtgrouppopup.cpp.o CMakeFiles/taskbar.dir/LXQtPluginTranslationLoader.cpp.o
+/usr/bin/ranlib libtaskbar.a

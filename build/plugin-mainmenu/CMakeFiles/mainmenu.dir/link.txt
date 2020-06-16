@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmainmenu.a  CMakeFiles/mainmenu.dir/mainmenu_autogen/mocs_compilation.cpp.o CMakeFiles/mainmenu.dir/actionview.cpp.o CMakeFiles/mainmenu.dir/lxqtmainmenu.cpp.o CMakeFiles/mainmenu.dir/menustyle.cpp.o CMakeFiles/mainmenu.dir/lxqtmainmenuconfiguration.cpp.o CMakeFiles/mainmenu.dir/LXQtPluginTranslationLoader.cpp.o
+/usr/bin/ranlib libmainmenu.a
