@@ -14,6 +14,8 @@ set(HEADERS
     actioncenterhome.h
     actiondatetime.h
     actioncenterui.h
+    brightness/brightness.h
+    brightness/bluelight.h
 )
 set(SOURCES
     kmpactioncenter.cpp
@@ -22,6 +24,8 @@ set(SOURCES
     kmpcontrolcenteritem.cpp
     actioncenterhome.cpp
     actiondatetime.cpp
+    brightness/brightness.cpp
+    brightness/bluelight.cpp
 )
 
 set(UIS

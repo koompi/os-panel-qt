@@ -476,6 +476,7 @@ public:
         ac_slider_gamma->setObjectName(QString::fromUtf8("ac_slider_gamma"));
         ac_slider_gamma->setStyleSheet(QString::fromUtf8(""));
         ac_slider_gamma->setTracking(true);
+        ac_slider_gamma->setRange (20,99);
         ac_slider_gamma->setOrientation(Qt::Horizontal);
 
         middle_gamma_layout->addWidget(ac_slider_gamma);
@@ -512,6 +513,7 @@ public:
         ac_slider_bright->setObjectName(QString::fromUtf8("ac_slider_bright"));
         ac_slider_bright->setStyleSheet(QString::fromUtf8(""));
         ac_slider_bright->setTracking(true);
+        ac_slider_bright->setRange (20,99);
         ac_slider_bright->setOrientation(Qt::Horizontal);
 
         middle_birhgt_layout->addWidget(ac_slider_bright);

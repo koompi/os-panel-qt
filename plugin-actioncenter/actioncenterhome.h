@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include "actiondatetime.h"
+#include "brightness/brightness.h"
+#include "brightness/bluelight.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class Quick_Center;}
 QT_END_NAMESPACE
@@ -15,6 +17,8 @@ public:
 private:
     Ui::Quick_Center * ui;
     ActionDateTime * actionDateTime;
+    brightness *bright;
+    bluelight *blue;
     void initAction();
     void initDependency();
 signals:
