@@ -469,6 +469,7 @@ public:
         }
         ac_icon_gamma->setIcon(icon11);
         ac_icon_gamma->setAutoRaise(true);
+        ac_icon_gamma->setCheckable (true);
 
         middle_gamma_layout->addWidget(ac_icon_gamma);
 
@@ -506,6 +507,7 @@ public:
         }
         ac_bright_icon->setIcon(icon12);
         ac_bright_icon->setAutoRaise(true);
+        ac_bright_icon->setCheckable (true);
 
         middle_birhgt_layout->addWidget(ac_bright_icon);
 

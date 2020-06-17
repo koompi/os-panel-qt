@@ -21,6 +21,8 @@ private:
     bluelight *blue;
     void initAction();
     void initDependency();
+     void setBrightState(bool checked);
+     void setBlueState(bool checked);
 signals:
 
 };

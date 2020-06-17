@@ -6,9 +6,9 @@
 ActionCenterHome::ActionCenterHome(QWidget *parent) :
     QWidget(parent),ui(new Ui::Quick_Center)
 {
-   ui->setupUi(this);
-   initDependency();
-   initAction();
+    ui->setupUi(this);
+    initDependency();
+    initAction();
 }
 
 ActionCenterHome::~ActionCenterHome()
@@ -24,18 +24,43 @@ void ActionCenterHome::initAction()
     connect(actionDateTime, &ActionDateTime::timeChanged, ui->ac_time, &QLabel::setText);
     connect(actionDateTime, &ActionDateTime::dateChanged, ui->ac_date, &QLabel::setText);
     bright = new brightness(this);
+    connect (ui->ac_icon_gamma, &QToolButton::toggled, this, &ActionCenterHome::setBrightState);
     connect (ui->ac_slider_gamma, &QSlider::valueChanged,bright, &brightness::getCurrentValue);
     connect(ui->ac_slider_gamma, &QSlider::valueChanged, [&](const int & value) {
-           ui->ac_gamma_level->setText(QString::number (value).append (QStringLiteral("%")));
-        });
+        ui->ac_gamma_level->setText(QString::number (value).append (QStringLiteral("%")));
+    });
     blue = new bluelight(this);
-        connect (ui->ac_slider_bright,&QSlider::valueChanged, blue,&bluelight::getCurrentValue );
-        connect (ui->ac_slider_bright,&QSlider::valueChanged, [&](const int & value){
-            ui->ac_bright_level->setText (
-            QString::number(value).append (QStringLiteral("%")));
-        });
+    connect (ui->ac_bright_icon, &QToolButton::toggled, this, &ActionCenterHome::setBlueState);
+    connect (ui->ac_slider_bright,&QSlider::valueChanged, blue,&bluelight::getCurrentValue);
+    connect (ui->ac_slider_bright,&QSlider::valueChanged, [&](const int & value){
+        ui->ac_bright_level->setText (
+                    QString::number(value).append (QStringLiteral("%")));
+    });
 }
 void ActionCenterHome::initDependency()
 {
-   actionDateTime = new ActionDateTime();
+    actionDateTime = new ActionDateTime();
 }
+
+void ActionCenterHome::setBrightState(bool checked)
+{
+    if(checked){
+            ui->ac_slider_gamma->setEnabled (false);
+            qInfo() << "enable "<<Qt::endl;
+        }else{
+            ui->ac_slider_gamma->setEnabled (true);
+            qInfo() << "disable"<<Qt::endl;
+    }
+}
+
+void ActionCenterHome::setBlueState(bool checked)
+{
+    if(checked){
+            ui->ac_slider_bright->setEnabled (false);
+            qInfo() << "enable "<<Qt::endl;
+        }else{
+            ui->ac_slider_bright->setEnabled (true);
+            qInfo() << "disable"<<Qt::endl;
+    }
+}
+
