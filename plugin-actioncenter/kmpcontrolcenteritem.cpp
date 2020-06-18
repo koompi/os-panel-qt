@@ -29,17 +29,20 @@ void KMPControlCenterItem::setupUi(QWidget *Form) {
     stackedWidget->setObjectName(QString::fromUtf8("stackedWidget"));
     homePage = new ActionCenterHome(this);
     homePage->setObjectName(QString::fromUtf8("homePage"));
-//    pushButton = new QPushButton(page);
-//    pushButton->setObjectName(QString::fromUtf8("pushButton"));
-
+    bluetooth = new Bluetooth(this);
+    bluetooth->setObjectName(QString::fromUtf8("bluetooth"));
+    bluetooth->setStack(stackedWidget);
+    homePage->setStack(stackedWidget);
+    homePage->setBlueInstance(bluetooth);
     stackedWidget->addWidget(homePage);
+
+    stackedWidget->addWidget(bluetooth);
     page_2 = new QWidget();
     page_2->setObjectName(QString::fromUtf8("page_2"));
     verticalLayout_3 = new QVBoxLayout(page_2);
     verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
     pushButton_2 = new QPushButton(page_2);
     pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-
     verticalLayout_3->addWidget(pushButton_2);
 
     stackedWidget->addWidget(page_2);

@@ -14,6 +14,11 @@ set(HEADERS
     actioncenterhome.h
     actiondatetime.h
     actioncenterui.h
+    bluetooth/bluetoothui.h
+    bluetooth/bluetooth.h
+    bluetooth/customitem.h
+    bluetooth/bluetoothservice.h
+
 )
 set(SOURCES
     kmpactioncenter.cpp
@@ -22,9 +27,13 @@ set(SOURCES
     kmpcontrolcenteritem.cpp
     actioncenterhome.cpp
     actiondatetime.cpp
+    bluetooth/bluetooth.cpp
+    bluetooth/customitem.cpp
+    bluetooth/bluetoothservice.cpp
 )
 
 set(UIS
 
 )
+
 BUILD_LXQT_PLUGIN(${PLUGIN})

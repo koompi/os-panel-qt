@@ -14,7 +14,7 @@ KMPActionCenterPopUP::KMPActionCenterPopUP(QWidget *parent)
   installEventFilter(this);
   actionItem = new KMPControlCenterItem(this);
   QVBoxLayout *actionLayout = new QVBoxLayout(actionItem);
-//  setStyleSheet(QStringLiteral("background-color:#2f3640;"));
+//  setStyleSheet(QStringLiteral("background-color:#ffffff;"));
   setLayout(actionLayout);
 }
 

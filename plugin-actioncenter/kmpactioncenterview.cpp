@@ -14,7 +14,7 @@ KMPActionCenterView::KMPActionCenterView(ILXQtPanelPlugin *plugin,
   setMouseTracking(true);
   setPanel(m_panel);
   qInfo() << panel()->position() << endl;
-  m_actionPopup = new KMPActionCenterPopUP(this);
+  m_actionPopup = new KMPActionCenterPopUP();
   connect(this, &QToolButton::clicked, this,
           &KMPActionCenterView::toggleActionCenter);
 

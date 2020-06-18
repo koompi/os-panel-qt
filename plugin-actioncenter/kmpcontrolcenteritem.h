@@ -8,6 +8,7 @@
 //#include "soundservice.h"
 //#include "wifiitemcontainer.h"
 #include "actioncenterhome.h"
+#include "bluetooth/bluetooth.h"
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
@@ -43,6 +44,7 @@ private:
   QPushButton *pushButton_2;
   // custome widget used inside action center.
   ActionCenterHome * homePage =nullptr;
+  Bluetooth * bluetooth = nullptr;
 Q_SIGNALS:
 
 public Q_SLOTS:

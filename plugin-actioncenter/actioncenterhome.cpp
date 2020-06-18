@@ -22,9 +22,31 @@ void ActionCenterHome::initAction()
     });
     connect(actionDateTime, &ActionDateTime::timeChanged, ui->ac_time, &QLabel::setText);
     connect(actionDateTime, &ActionDateTime::dateChanged, ui->ac_date, &QLabel::setText);
-
+    connect(ui->btooth_btn, &QToolButton::clicked, [&](){
+        getStack()->setCurrentWidget(getBlueInstance());
+    });
 }
 void ActionCenterHome::initDependency()
 {
-   actionDateTime = new ActionDateTime();
+   actionDateTime = new ActionDateTime(this);
+}
+
+QWidget *ActionCenterHome::getBlueInstance() const
+{
+    return blueInstance;
+}
+
+void ActionCenterHome::setBlueInstance(QWidget *value)
+{
+    blueInstance = value;
+}
+
+QStackedWidget *ActionCenterHome::getStack() const
+{
+    return stack;
+}
+
+void ActionCenterHome::setStack(QStackedWidget *value)
+{
+    stack = value;
 }

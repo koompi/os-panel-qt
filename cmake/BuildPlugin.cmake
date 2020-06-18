@@ -17,7 +17,7 @@ MACRO (BUILD_LXQT_PLUGIN NAME)
         INSTALL_DIR
             ${LXQT_TRANSLATIONS_DIR}/${PROGRAM}/${NAME}
     )
-
+    find_package(Qt5 COMPONENTS Bluetooth  REQUIRED)
     #lxqt_translate_to(QM_FILES ${CMAKE_INSTALL_FULL_DATAROOTDIR}/lxqt/${PROGRAM}/${PROJECT_NAME})
     file (GLOB ${PROJECT_NAME}_DESKTOP_FILES_IN resources/*.desktop.in)
     lxqt_translate_desktop(DESKTOP_FILES
@@ -50,7 +50,7 @@ MACRO (BUILD_LXQT_PLUGIN NAME)
     else() # static
         add_library(${NAME} STATIC ${SRC}) # build statically linked lib
     endif()
-    target_link_libraries(${NAME} ${QTX_LIBRARIES} lxqt ${LIBRARIES} KF5::WindowSystem)
+    target_link_libraries(${NAME} ${QTX_LIBRARIES} lxqt ${LIBRARIES} KF5::WindowSystem  Qt5::Bluetooth)
 
     install(FILES ${CONFIG_FILES}  DESTINATION ${PLUGIN_SHARE_DIR})
     install(FILES ${DESKTOP_FILES} DESTINATION ${PROG_SHARE_DIR})

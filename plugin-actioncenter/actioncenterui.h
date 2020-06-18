@@ -71,13 +71,12 @@ public:
     {
         if (quick_center->objectName().isEmpty())
             quick_center->setObjectName(QString::fromUtf8("quick_center"));
-        quick_center->resize(330, 1546);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(quick_center->sizePolicy().hasHeightForWidth());
         quick_center->setSizePolicy(sizePolicy);
-        quick_center->setWindowOpacity(1.000000000000000);
+        quick_center->setWindowOpacity(1);
         quick_center->setStyleSheet(QString::fromUtf8(""));
         quick_center_layout = new QVBoxLayout(quick_center);
         quick_center_layout->setObjectName(QString::fromUtf8("quick_center_layout"));
@@ -94,7 +93,7 @@ public:
         ac_profile->setMaximumSize(QSize(42, 42));
         ac_profile->setMouseTracking(false);
         ac_profile->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
-"background-color: rgba(0, 0, 0, 0.2);"));
+                                                    "background-color: rgba(0, 0, 0, 0.2);"));
         QIcon icon;
         QString iconThemeName = QString::fromUtf8("user");
         if (QIcon::hasThemeIcon(iconThemeName)) {
@@ -146,7 +145,7 @@ public:
         ac_notification->setMinimumSize(QSize(42, 42));
         ac_notification->setMaximumSize(QSize(42, 42));
         ac_notification->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
-"background-color: rgba(0, 0, 0, 0.2);"));
+                                                         "background-color: rgba(0, 0, 0, 0.2);"));
         QIcon icon1;
         iconThemeName = QString::fromUtf8("preferences-system-notifications-symbolic");
         if (QIcon::hasThemeIcon(iconThemeName)) {
@@ -181,13 +180,13 @@ public:
         setting_btn->setSizePolicy(sizePolicy2);
         setting_btn->setMinimumSize(QSize(100, 100));
         setting_btn->setStyleSheet(QString::fromUtf8("QToolButton{\n"
-"background-color: rgba(0, 0, 0, 0.2);\n"
-"border-radius:5px;\n"
-"}\n"
-"QToolButton::clicked{\n"
-"background-color:white;\n"
-"color:black;\n"
-"}"));
+                                                     "background-color: rgba(0, 0, 0, 0.2);\n"
+                                                     "border-radius:5px;\n"
+                                                     "}\n"
+                                                     "QToolButton::clicked{\n"
+                                                     "background-color:white;\n"
+                                                     "color:black;\n"
+                                                     "}"));
         QIcon icon2;
         iconThemeName = QString::fromUtf8("preferences");
         if (QIcon::hasThemeIcon(iconThemeName)) {
@@ -209,13 +208,13 @@ public:
         btooth_btn->setSizePolicy(sizePolicy2);
         btooth_btn->setMinimumSize(QSize(100, 100));
         btooth_btn->setStyleSheet(QString::fromUtf8("QToolButton{\n"
-"background-color: rgba(0, 0, 0, 0.2);\n"
-"border-radius:5px;\n"
-"}\n"
-"QToolButton::clicked{\n"
-"background-color:white;\n"
-"color:black;\n"
-"}"));
+                                                    "background-color: rgba(0, 0, 0, 0.2);\n"
+                                                    "border-radius:5px;\n"
+                                                    "}\n"
+                                                    "QToolButton::clicked{\n"
+                                                    "background-color:white;\n"
+                                                    "color:black;\n"
+                                                    "}"));
         QIcon icon3;
         iconThemeName = QString::fromUtf8("preferences-system-bluetooth");
         if (QIcon::hasThemeIcon(iconThemeName)) {
@@ -240,15 +239,15 @@ public:
         nightmode_btn->setSizePolicy(sizePolicy3);
         nightmode_btn->setMinimumSize(QSize(100, 100));
         nightmode_btn->setStyleSheet(QString::fromUtf8("QToolButton{\n"
-"background-color: rgba(0, 0, 0, 0.2);\n"
-"border-radius:5px;\n"
-"}\n"
-"QToolButton::clicked{\n"
-"background-color:white;\n"
-"color:black;\n"
-"}"));
+                                                       "background-color: rgba(0, 0, 0, 0.2);\n"
+                                                       "border-radius:5px;\n"
+                                                       "}\n"
+                                                       "QToolButton::clicked{\n"
+                                                       "background-color:white;\n"
+                                                       "color:black;\n"
+                                                       "}"));
         QIcon icon4;
-        iconThemeName = QString::fromUtf8("weather-storm-night");
+        iconThemeName = QString::fromUtf8(("user"));
         if (QIcon::hasThemeIcon(iconThemeName)) {
             icon4 = QIcon::fromTheme(iconThemeName);
         } else {
@@ -268,13 +267,13 @@ public:
         user_btn->setSizePolicy(sizePolicy2);
         user_btn->setMinimumSize(QSize(100, 100));
         user_btn->setStyleSheet(QString::fromUtf8("QToolButton{\n"
-"background-color: rgba(0, 0, 0, 0.2);\n"
-"border-radius:5px;\n"
-"}\n"
-"QToolButton::clicked{\n"
-"background-color:white;\n"
-"color:black;\n"
-"}"));
+                                                  "background-color: rgba(0, 0, 0, 0.2);\n"
+                                                  "border-radius:5px;\n"
+                                                  "}\n"
+                                                  "QToolButton::clicked{\n"
+                                                  "background-color:white;\n"
+                                                  "color:black;\n"
+                                                  "}"));
         user_btn->setIcon(icon);
         user_btn->setIconSize(QSize(48, 48));
         user_btn->setPopupMode(QToolButton::InstantPopup);
@@ -289,20 +288,21 @@ public:
         airplan_btn->setSizePolicy(sizePolicy3);
         airplan_btn->setMinimumSize(QSize(100, 100));
         airplan_btn->setStyleSheet(QString::fromUtf8("QToolButton{\n"
-"background-color: rgba(0, 0, 0, 0.2);\n"
-"border-radius:5px;\n"
-"}\n"
-"QToolButton::clicked{\n"
-"background-color:white;\n"
-"color:black;\n"
-"}"));
+                                                     "background-color: rgba(0, 0, 0, 0.2);\n"
+                                                     "border-radius:5px;\n"
+                                                     "}\n"
+                                                     "QToolButton::clicked{\n"
+                                                     "background-color:white;\n"
+                                                     "color:black;\n"
+                                                     "}"));
         QIcon icon5;
-        iconThemeName = QString::fromUtf8("network-wireless-hotspot");
-        if (QIcon::hasThemeIcon(iconThemeName)) {
+        iconThemeName = QString::fromUtf8("user");
+        if(QIcon::hasThemeIcon(iconThemeName)){
             icon5 = QIcon::fromTheme(iconThemeName);
-        } else {
+        }else{
             icon5.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
         }
+        icon5.fromTheme(QString::fromUtf8("user"));
         airplan_btn->setIcon(icon5);
         airplan_btn->setIconSize(QSize(48, 48));
         airplan_btn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
@@ -316,13 +316,13 @@ public:
         todo_btn->setSizePolicy(sizePolicy3);
         todo_btn->setMinimumSize(QSize(100, 100));
         todo_btn->setStyleSheet(QString::fromUtf8("QToolButton{\n"
-"background-color: rgba(0, 0, 0, 0.2);\n"
-"border-radius:5px;\n"
-"}\n"
-"QToolButton::clicked{\n"
-"background-color:white;\n"
-"color:black;\n"
-"}"));
+                                                  "background-color: rgba(0, 0, 0, 0.2);\n"
+                                                  "border-radius:5px;\n"
+                                                  "}\n"
+                                                  "QToolButton::clicked{\n"
+                                                  "background-color:white;\n"
+                                                  "color:black;\n"
+                                                  "}"));
         QIcon icon6;
         iconThemeName = QString::fromUtf8("tag-addressbook");
         if (QIcon::hasThemeIcon(iconThemeName)) {
@@ -343,15 +343,15 @@ public:
         focus_btn->setSizePolicy(sizePolicy3);
         focus_btn->setMinimumSize(QSize(100, 100));
         focus_btn->setStyleSheet(QString::fromUtf8("QToolButton{\n"
-"background-color: rgba(0, 0, 0, 0.2);\n"
-"border-radius:5px;\n"
-"}\n"
-"QToolButton::clicked{\n"
-"background-color:white;\n"
-"color:black;\n"
-"}"));
+                                                   "background-color: rgba(0, 0, 0, 0.2);\n"
+                                                   "border-radius:5px;\n"
+                                                   "}\n"
+                                                   "QToolButton::clicked{\n"
+                                                   "background-color:white;\n"
+                                                   "color:black;\n"
+                                                   "}"));
         QIcon icon7;
-        iconThemeName = QString::fromUtf8("braindump");
+        iconThemeName = QString::fromUtf8("user");
         if (QIcon::hasThemeIcon(iconThemeName)) {
             icon7 = QIcon::fromTheme(iconThemeName);
         } else {
@@ -370,13 +370,13 @@ public:
         toolButton_6->setSizePolicy(sizePolicy2);
         toolButton_6->setMinimumSize(QSize(100, 100));
         toolButton_6->setStyleSheet(QString::fromUtf8("QToolButton{\n"
-"background-color: rgba(0, 0, 0, 0.2);\n"
-"border-radius:5px;\n"
-"}\n"
-"QToolButton::clicked{\n"
-"background-color:white;\n"
-"color:black;\n"
-"}"));
+                                                      "background-color: rgba(0, 0, 0, 0.2);\n"
+                                                      "border-radius:5px;\n"
+                                                      "}\n"
+                                                      "QToolButton::clicked{\n"
+                                                      "background-color:white;\n"
+                                                      "color:black;\n"
+                                                      "}"));
         QIcon icon8;
         iconThemeName = QString::fromUtf8("network-wireless");
         if (QIcon::hasThemeIcon(iconThemeName)) {
@@ -399,13 +399,13 @@ public:
         display_btn->setMinimumSize(QSize(100, 100));
         display_btn->setAutoFillBackground(false);
         display_btn->setStyleSheet(QString::fromUtf8("QToolButton{\n"
-"background-color: rgba(0, 0, 0, 0.2);\n"
-"border-radius:5px;\n"
-"}\n"
-"QToolButton::clicked{\n"
-"background-color:white;\n"
-"color:black;\n"
-"}"));
+                                                     "background-color: rgba(0, 0, 0, 0.2);\n"
+                                                     "border-radius:5px;\n"
+                                                     "}\n"
+                                                     "QToolButton::clicked{\n"
+                                                     "background-color:white;\n"
+                                                     "color:black;\n"
+                                                     "}"));
         QIcon icon9;
         iconThemeName = QString::fromUtf8("monitor");
         if (QIcon::hasThemeIcon(iconThemeName)) {
@@ -427,13 +427,13 @@ public:
         locale_btn->setSizePolicy(sizePolicy3);
         locale_btn->setMinimumSize(QSize(100, 100));
         locale_btn->setStyleSheet(QString::fromUtf8("QToolButton{\n"
-"background-color: rgba(0, 0, 0, 0.2);\n"
-"border-radius:5px;\n"
-"}\n"
-"QToolButton::clicked{\n"
-"background-color:white;\n"
-"color:black;\n"
-"}"));
+                                                    "background-color: rgba(0, 0, 0, 0.2);\n"
+                                                    "border-radius:5px;\n"
+                                                    "}\n"
+                                                    "QToolButton::clicked{\n"
+                                                    "background-color:white;\n"
+                                                    "color:black;\n"
+                                                    "}"));
         QIcon icon10;
         iconThemeName = QString::fromUtf8("preferences-desktop-locale");
         if (QIcon::hasThemeIcon(iconThemeName)) {
@@ -577,7 +577,7 @@ public:
         logout_btn->setMinimumSize(QSize(42, 42));
         logout_btn->setMaximumSize(QSize(42, 42));
         logout_btn->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
-"background-color: rgba(0, 0, 0, 0.2);"));
+                                                    "background-color: rgba(0, 0, 0, 0.2);"));
         QIcon icon14;
         iconThemeName = QString::fromUtf8("system-log-out");
         if (QIcon::hasThemeIcon(iconThemeName)) {
@@ -596,7 +596,7 @@ public:
         reboot_btn->setMinimumSize(QSize(42, 42));
         reboot_btn->setMaximumSize(QSize(42, 42));
         reboot_btn->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
-"background-color: rgba(0, 0, 0, 0.2);"));
+                                                    "background-color: rgba(0, 0, 0, 0.2);"));
         QIcon icon15;
         iconThemeName = QString::fromUtf8("system-reboot");
         if (QIcon::hasThemeIcon(iconThemeName)) {
@@ -615,7 +615,7 @@ public:
         lock_screen_btn->setMinimumSize(QSize(42, 42));
         lock_screen_btn->setMaximumSize(QSize(42, 42));
         lock_screen_btn->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
-"background-color: rgba(0, 0, 0, 0.2);"));
+                                                         "background-color: rgba(0, 0, 0, 0.2);"));
         QIcon icon16;
         iconThemeName = QString::fromUtf8("system-lock-screen");
         if (QIcon::hasThemeIcon(iconThemeName)) {
@@ -634,7 +634,7 @@ public:
         shutdown_btn->setMinimumSize(QSize(42, 42));
         shutdown_btn->setMaximumSize(QSize(42, 42));
         shutdown_btn->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
-"background-color: rgba(0, 0, 0, 0.2);"));
+                                                      "background-color: rgba(0, 0, 0, 0.2);"));
         QIcon icon17;
         iconThemeName = QString::fromUtf8("system-shutdown");
         if (QIcon::hasThemeIcon(iconThemeName)) {
@@ -653,7 +653,7 @@ public:
         suspend_btn->setMinimumSize(QSize(42, 42));
         suspend_btn->setMaximumSize(QSize(42, 42));
         suspend_btn->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
-"background-color: rgba(0, 0, 0, 0.2);"));
+                                                     "background-color: rgba(0, 0, 0, 0.2);"));
         QIcon icon18;
         iconThemeName = QString::fromUtf8("system-suspend");
         if (QIcon::hasThemeIcon(iconThemeName)) {
@@ -674,7 +674,6 @@ public:
 
         quick_center_layout->addItem(ac_bottom_spacer);
 
-
         retranslateUi(quick_center);
 
         QMetaObject::connectSlotsByName(quick_center);
@@ -686,7 +685,7 @@ public:
         ac_profile->setText(QString());
         ac_time->setStyleSheet(QString());
         ac_time->setText(QCoreApplication::translate("quick_center", "09:30 AM", nullptr));
-        ac_date->setText(QCoreApplication::translate("quick_center", "", nullptr));
+        ac_date->setText(QCoreApplication::translate("quick_center", "<html><head/><body><p><span style=\" font-size:8pt;\">19 May 2020</span></p></body></html>", nullptr));
         ac_notification->setText(QCoreApplication::translate("quick_center", "...", nullptr));
         setting_btn->setText(QCoreApplication::translate("quick_center", "Settings", nullptr));
         btooth_btn->setText(QCoreApplication::translate("quick_center", "Bluetooth", nullptr));
@@ -709,12 +708,13 @@ public:
         lock_screen_btn->setText(QCoreApplication::translate("quick_center", "...", nullptr));
         shutdown_btn->setText(QCoreApplication::translate("quick_center", "...", nullptr));
         suspend_btn->setText(QCoreApplication::translate("quick_center", "...", nullptr));
+
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class Quick_Center: public Ui_quick_center {};
+class Quick_Center: public Ui_quick_center {};
 } // namespace Ui
 
 QT_END_NAMESPACE
