@@ -13,6 +13,7 @@
 #include <QScreen>
 #include <QSizePolicy>
 #include <QVBoxLayout>
+#include <LXQt/Settings>
 KMPControlCenterItem::KMPControlCenterItem(QWidget *parent) : QWidget(parent) {
     setupUi(parent);
     retranslateUi(parent);
@@ -28,11 +29,17 @@ void KMPControlCenterItem::setupUi(QWidget *Form) {
     stackedWidget = new QStackedWidget(Form);
     stackedWidget->setObjectName(QString::fromUtf8("stackedWidget"));
     homePage = new ActionCenterHome(this);
+    homePage->setStackWidget (stackedWidget);
     homePage->setObjectName(QString::fromUtf8("homePage"));
-//    pushButton = new QPushButton(page);
-//    pushButton->setObjectName(QString::fromUtf8("pushButton"));
+    LXQt::Settings settings(QStringLiteral("lxqt-config-locale"));
+    localePage =new localecontrol(&settings,this);
+    localePage->setStack (stackedWidget);
+    localePage->setObjectName (QString::fromUtf8 ("localePage"));
+    //    pushButton = new QPushButton(page);
+    //    pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
     stackedWidget->addWidget(homePage);
+    stackedWidget->addWidget(localePage);
     page_2 = new QWidget();
     page_2->setObjectName(QString::fromUtf8("page_2"));
     verticalLayout_3 = new QVBoxLayout(page_2);

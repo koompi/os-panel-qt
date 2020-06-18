@@ -14,6 +14,9 @@ set(HEADERS
     actioncenterhome.h
     actiondatetime.h
     actioncenterui.h
+    locale/localeUi.h
+    locale/localeconfig.h
+    locale/localecontrol.h
 )
 set(SOURCES
     kmpactioncenter.cpp
@@ -22,6 +25,8 @@ set(SOURCES
     kmpcontrolcenteritem.cpp
     actioncenterhome.cpp
     actiondatetime.cpp
+    locale/localeconfig.cpp
+    locale/localecontrol.cpp
 )
 
 set(UIS

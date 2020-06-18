@@ -25,6 +25,7 @@
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "locale/localecontrol.h"
 class KMPControlCenterItem : public QWidget {
   Q_OBJECT
 public:
@@ -43,6 +44,7 @@ private:
   QPushButton *pushButton_2;
   // custome widget used inside action center.
   ActionCenterHome * homePage =nullptr;
+  localecontrol * localePage{};
 Q_SIGNALS:
 
 public Q_SLOTS:

@@ -15,6 +15,16 @@ ActionCenterHome::~ActionCenterHome()
     delete ui;
 }
 
+QStackedWidget *ActionCenterHome::getStackWidget() const
+{
+    return stackWidget;
+}
+
+void ActionCenterHome::setStackWidget(QStackedWidget *value)
+{
+     stackWidget = value;
+}
+
 void ActionCenterHome::initAction()
 {
     connect(ui->shutdown_btn, &QToolButton::clicked, [](){
@@ -22,7 +32,9 @@ void ActionCenterHome::initAction()
     });
     connect(actionDateTime, &ActionDateTime::timeChanged, ui->ac_time, &QLabel::setText);
     connect(actionDateTime, &ActionDateTime::dateChanged, ui->ac_date, &QLabel::setText);
-
+    connect (ui->locale_btn, &QToolButton::clicked, [&](){
+        getStackWidget ()->setCurrentIndex (1);
+        });
 }
 void ActionCenterHome::initDependency()
 {
