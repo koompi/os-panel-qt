@@ -14,8 +14,9 @@ set(HEADERS
     actioncenterhome.h
     actiondatetime.h
     actioncenterui.h
-    display/displayUi.h
     display/displayconfig.h
+    display/displayUi.h
+
 
 )
 set(SOURCES
@@ -26,6 +27,7 @@ set(SOURCES
     actioncenterhome.cpp
     actiondatetime.cpp
     display/displayconfig.cpp
+    display/displayUi.cpp
 )
 
 set(UIS

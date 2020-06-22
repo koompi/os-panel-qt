@@ -30,8 +30,8 @@ void KMPControlCenterItem::setupUi(QWidget *Form) {
     homePage = new ActionCenterHome(this);
     homePage->setStackWidget (stackedWidget);
     homePage->setObjectName(QString::fromUtf8("homePage"));
-    display =new displayConfig(this);
-    display->setStack (stackedWidget);
+    display =new Ui_Form(this);
+    display->setDisplayStacked (stackedWidget);
     display->setObjectName (QString::fromUtf8 ("displayPage"));
 //    pushButton = new QPushButton(page);
 //    pushButton->setObjectName(QString::fromUtf8("pushButton"));

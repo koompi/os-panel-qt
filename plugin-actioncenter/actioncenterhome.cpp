@@ -35,7 +35,6 @@ void ActionCenterHome::initAction()
     connect (ui->display_btn, &QToolButton::clicked, [&](){
        getStackWidget ()->setCurrentIndex (1);
     });
-
 }
 void ActionCenterHome::initDependency()
 {

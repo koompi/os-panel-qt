@@ -25,7 +25,7 @@
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include "display/displayconfig.h"
+#include "display/displayUi.h"
 class KMPControlCenterItem : public QWidget {
   Q_OBJECT
 public:
@@ -44,7 +44,7 @@ private:
   QPushButton *pushButton_2;
   // custome widget used inside action center.
   ActionCenterHome * homePage =nullptr;
-  displayConfig * display {};
+  Ui_Form * display {};
 Q_SIGNALS:
 
 public Q_SLOTS:
