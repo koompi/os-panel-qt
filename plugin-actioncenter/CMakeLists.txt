@@ -14,6 +14,7 @@ set(HEADERS
     actioncenterhome.h
     actiondatetime.h
     actioncenterui.h
+    nightmode/nightmodeconfig.h
 )
 set(SOURCES
     kmpactioncenter.cpp
@@ -22,6 +23,7 @@ set(SOURCES
     kmpcontrolcenteritem.cpp
     actioncenterhome.cpp
     actiondatetime.cpp
+    nightmode/nightmodeconfig.cpp
 )
 
 set(UIS

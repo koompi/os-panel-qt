@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "actiondatetime.h"
+#include "nightmode/nightmodeconfig.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class Quick_Center;}
 QT_END_NAMESPACE
@@ -17,6 +18,8 @@ private:
     ActionDateTime * actionDateTime;
     void initAction();
     void initDependency();
+    nightmodeconfig *night;
+
 signals:
 
 };

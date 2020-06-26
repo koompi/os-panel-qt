@@ -239,6 +239,7 @@ public:
         sizePolicy3.setHeightForWidth(nightmode_btn->sizePolicy().hasHeightForWidth());
         nightmode_btn->setSizePolicy(sizePolicy3);
         nightmode_btn->setMinimumSize(QSize(100, 100));
+        nightmode_btn->setCheckable (true);
         nightmode_btn->setStyleSheet(QString::fromUtf8("QToolButton{\n"
 "background-color: rgba(0, 0, 0, 0.2);\n"
 "border-radius:5px;\n"
