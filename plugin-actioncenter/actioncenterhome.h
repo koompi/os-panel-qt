@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "actiondatetime.h"
+#include "airplane/airplaneconfig.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class Quick_Center;}
 QT_END_NAMESPACE
@@ -17,6 +18,7 @@ private:
     ActionDateTime * actionDateTime;
     void initAction();
     void initDependency();
+    airplaneConfig *airplane;
 signals:
 
 };

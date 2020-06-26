@@ -287,6 +287,7 @@ public:
         airplan_btn->setObjectName(QString::fromUtf8("airplan_btn"));
         sizePolicy3.setHeightForWidth(airplan_btn->sizePolicy().hasHeightForWidth());
         airplan_btn->setSizePolicy(sizePolicy3);
+        airplan_btn->setCheckable (true);
         airplan_btn->setMinimumSize(QSize(100, 100));
         airplan_btn->setStyleSheet(QString::fromUtf8("QToolButton{\n"
 "background-color: rgba(0, 0, 0, 0.2);\n"
