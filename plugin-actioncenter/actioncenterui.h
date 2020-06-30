@@ -93,8 +93,7 @@ public:
         ac_profile->setMinimumSize(QSize(42, 42));
         ac_profile->setMaximumSize(QSize(42, 42));
         ac_profile->setMouseTracking(false);
-        ac_profile->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
-"background-color: rgba(0, 0, 0, 0.2);"));
+        ac_profile->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"));
         QIcon icon;
         QString iconThemeName = QString::fromUtf8("user");
         if (QIcon::hasThemeIcon(iconThemeName)) {

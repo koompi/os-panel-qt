@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "actiondatetime.h"
+#include "userprofile.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class Quick_Center;}
 QT_END_NAMESPACE
@@ -17,7 +18,10 @@ private:
     ActionDateTime * actionDateTime;
     void initAction();
     void initDependency();
-signals:
+    userprofile *profile;
+    QPixmap pic;
+public slots:
+    void on_filename(const QString &filename);
 
 };
 
