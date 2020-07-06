@@ -59,7 +59,6 @@ QLabel *ActionDateTime::createTime()
 void ActionDateTime::showTime()
 {
     QTime currentTime;
-    qInfo() << "this is function run after 30 mins"<<Qt::endl;
     QString time = currentTime.currentTime().toString(QString::fromUtf8("hh:mm AP"));
     emit timeChanged(time);
 }

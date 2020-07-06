@@ -75,6 +75,7 @@ void KMPActionCenterView::handleHideWindow() {}
 bool KMPActionCenterView::eventFilter(QObject *watched, QEvent *event) {
   if (watched == this && event != nullptr) {
     if (event->type() == QEvent::WindowDeactivate) {
+      qInfo() << "Window deactivate"<<Qt::endl;
       this->hide();
     } else if (event->type() == QEvent::Enter) {
       qInfo() << "you enter " << endl;
